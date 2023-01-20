@@ -3,7 +3,13 @@ package it.giococarteuno.view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import it.giococarteuno.FinestraPrincipaleMain;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class FinestraBenvenuto {
 
@@ -51,8 +57,22 @@ public class FinestraBenvenuto {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Esci");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FinestraPrincipaleMain fPrincipale = new FinestraPrincipaleMain();
+				fPrincipale.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
 		btnNewButton_2.setBounds(166, 165, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		FinestraPrincipaleMain fPrincipale = new FinestraPrincipaleMain();
+
+		System.out.println(fPrincipale.stringaNickname.getNickname());
+		JLabel lblNewLabel = new JLabel(fPrincipale.stringaNickname.getNickname());
+		lblNewLabel.setBounds(40, 56, 45, 13);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 }
