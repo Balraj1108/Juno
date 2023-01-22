@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import it.giococarteuno.dao.UtenteDAO;
 import it.giococarteuno.model.Utente;
 import it.giococarteuno.view.FinestraBenvenuto;
+import it.giococarteuno.view.Registrazione;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 
 public class FinestraPrincipaleMain extends JFrame {
 
-	public JFrame frame;
+	private JFrame frame;
 	private JTextField textField;
 	private JButton btnNewButton_1;
 	public static Utente stringaNickname;
@@ -95,7 +96,7 @@ public class FinestraPrincipaleMain extends JFrame {
 				
 				
 				FinestraBenvenuto fBenvenuto = new FinestraBenvenuto();
-				fBenvenuto.frame.setVisible(true);
+				fBenvenuto.getFrame().setVisible(true);
 				frame.dispose();
 				
 				
@@ -113,20 +114,27 @@ public class FinestraPrincipaleMain extends JFrame {
 		btnNewButton_1 = new JButton("Registrati");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showError();
+				Registrazione fRegistrazione = new Registrazione();
+				fRegistrazione.getFrame().setVisible(true);
+				frame.dispose();
 				
 			}
 		});
 		btnNewButton_1.setBounds(190, 91, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		String provastr = "ciao";
 		
-		
-		JLabel lblNewLabel = new JLabel(provastr);
-		lblNewLabel.setBounds(27, 24, 45, 13);
-		frame.getContentPane().add(lblNewLabel);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
+	
 
 	
 	

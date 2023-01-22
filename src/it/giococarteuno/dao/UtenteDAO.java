@@ -20,7 +20,7 @@ public class UtenteDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Utente result = null;
-		System.out.println("prima del try");
+		
 
 		try {
 			
@@ -56,8 +56,43 @@ public class UtenteDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("fine di tutto");
+		
 		return result;
 		
+	}
+	
+	public int insert(String input) {
+
+		Connection c = null;
+		PreparedStatement ps = null;
+		int result = -1;
+
+		try {
+
+			c = MyConnection.getConnection();
+			ps = c.prepareStatement("insert into utente (nickname, partitegiocate, partitevinte, partiteperse, livello) \r\n"
+					+ "values (?, 0, 0, 0,0);");
+			ps.setString(1, input);
+			
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			// TODO: handle exception
+		} finally {
+			try {
+				ps.close();
+				c.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				// TODO: handle exception
+			}
+
+		}
+		System.out.println(result + "insert");
+		return result;
+
 	}
 }
