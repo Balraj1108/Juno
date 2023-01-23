@@ -21,7 +21,8 @@ public class FinestraPrincipaleMain extends JFrame {
 	private JFrame frame;
 	private JTextField textField;
 	private JButton btnNewButton_1;
-	public static Utente stringaNickname;
+	private static  Utente stringaNickname;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -84,7 +85,7 @@ public class FinestraPrincipaleMain extends JFrame {
 				String nicknameText = textField.getText();
 				System.out.println(nicknameText + " testo che inserisco io");
 				System.out.println(utenteDAO.findByNickname(nicknameText));
-				stringaNickname = utenteDAO.findByNickname(nicknameText);
+				setStringaNickname(utenteDAO.findByNickname(nicknameText));
 				
 				if(stringaNickname == null) {
 					showError();
@@ -123,6 +124,10 @@ public class FinestraPrincipaleMain extends JFrame {
 		btnNewButton_1.setBounds(190, 91, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
+		lblNewLabel = new JLabel("Nickname:");
+		lblNewLabel.setBounds(32, 24, 67, 13);
+		frame.getContentPane().add(lblNewLabel);
+		
 		
 	}
 
@@ -133,6 +138,16 @@ public class FinestraPrincipaleMain extends JFrame {
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
+
+	public static Utente getStringaNickname() {
+		return stringaNickname;
+	}
+
+	public static void setStringaNickname(Utente stringaNickname) {
+		FinestraPrincipaleMain.stringaNickname = stringaNickname;
+	}
+	
+	
 	
 	
 

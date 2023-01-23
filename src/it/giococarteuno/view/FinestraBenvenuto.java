@@ -49,11 +49,18 @@ public class FinestraBenvenuto {
 		getFrame().getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Gioca");
-		btnNewButton.setBounds(166, 26, 89, 23);
+		btnNewButton.setBounds(166, 94, 89, 23);
 		getFrame().getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Profilo");
-		btnNewButton_1.setBounds(166, 92, 89, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Profilo fProfilo = new Profilo();
+				fProfilo.getFrame().setVisible(true);
+				getFrame().dispose();
+			}
+		});
+		btnNewButton_1.setBounds(166, 153, 89, 23);
 		getFrame().getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Esci");
@@ -65,14 +72,14 @@ public class FinestraBenvenuto {
 			}
 		});
 		
-		btnNewButton_2.setBounds(166, 165, 89, 23);
+		btnNewButton_2.setBounds(166, 206, 89, 23);
 		getFrame().getContentPane().add(btnNewButton_2);
 		
-		FinestraPrincipaleMain fPrincipale = new FinestraPrincipaleMain();
+		
 
-		System.out.println(fPrincipale.stringaNickname.getNickname());
-		JLabel lblNewLabel = new JLabel(fPrincipale.stringaNickname.getNickname());
-		lblNewLabel.setBounds(40, 56, 45, 13);
+		System.out.println(FinestraPrincipaleMain.getStringaNickname().getNickname());
+		JLabel lblNewLabel = new JLabel("Bentornato " + FinestraPrincipaleMain.getStringaNickname().getNickname());
+		lblNewLabel.setBounds(166, 34, 187, 13);
 		getFrame().getContentPane().add(lblNewLabel);
 	}
 

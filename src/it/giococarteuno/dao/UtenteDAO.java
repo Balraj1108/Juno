@@ -95,4 +95,40 @@ public class UtenteDAO {
 		return result;
 
 	}
+	
+	public int update(String nickname, Long id) {
+
+		if (nickname == null) {
+			return 0;
+		}
+
+		Connection c = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			c = MyConnection.getConnection();
+			ps = c.prepareStatement("UPDATE utente SET nickname=?  where id=?");
+			ps.setString(1, nickname);
+			ps.setLong(2, id);
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			try {
+				ps.close();
+				c.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 }
