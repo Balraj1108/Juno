@@ -42,7 +42,7 @@ public class FinestraGioco {
 		//frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setLocationRelativeTo(null);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.getContentPane().setPreferredSize(new Dimension(1350, 680));
 		frame.pack();
 		frame.setVisible(true);
@@ -59,4 +59,14 @@ public class FinestraGioco {
 		
 		
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
+	
 }

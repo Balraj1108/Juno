@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import it.giococarteuno.FinestraPrincipaleMain;
-import it.giococarteuno.view.game.Gioco;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -52,7 +51,7 @@ public class FinestraBenvenuto {
 		JButton btnNewButton = new JButton("Gioca");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gioco fGioco = new Gioco();
+				FinestraGioco fGioco = new FinestraGioco();
 				fGioco.getFrame().setVisible(true);
 				getFrame().dispose();
 			}
