@@ -1,5 +1,6 @@
 package it.giococarteuno.view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -37,18 +38,25 @@ public class FinestraGioco {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame = new JFrame("FGioco");
+		//frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setLocationRelativeTo(null);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.getContentPane().setPreferredSize(new Dimension(1350, 680));
+		frame.pack();
+		frame.setVisible(true);
+		
 		frame.getContentPane().setLayout(null);
-		frame.setLocationRelativeTo(null);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		ImageIcon image = new ImageIcon("assets\\0.png");
 		
 		JLabel lblNewLabel = new JLabel(image);
-		lblNewLabel.setBounds(114, 181, 45, 56);
+		lblNewLabel.setBounds(465, 533, 73, 136);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
+		
 	}
-
 }
