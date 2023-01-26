@@ -8,6 +8,9 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import it.giococarteuno.controller.CartaController;
+
 import javax.swing.Icon;
 import javax.swing.JButton;
 
@@ -19,6 +22,8 @@ public class FinestraGioco {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+	
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -62,9 +67,9 @@ public class FinestraGioco {
 		//frame.getContentPane().setBackground(Color.blue);
 		
 		//frame.getContentPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
-		
+		CartaController controller = new CartaController();
 		//carico quello che voglio io
-		ImageIcon image = new ImageIcon("assets\\0.png");
+		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
 		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
 		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
 		

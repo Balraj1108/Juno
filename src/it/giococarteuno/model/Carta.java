@@ -45,4 +45,12 @@ public class Carta {
 		this.valore = valore;
 	}
 
+
+	@Override
+	public String toString() {
+		return ""+valore + colore;
+	}
+	
+	
+
 }
