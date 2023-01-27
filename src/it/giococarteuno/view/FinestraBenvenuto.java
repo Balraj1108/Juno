@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class FinestraBenvenuto {
 
@@ -88,6 +89,10 @@ public class FinestraBenvenuto {
 		JLabel lblNewLabel = new JLabel("Bentornato " + FinestraPrincipaleMain.getStringaNickname().getNickname());
 		lblNewLabel.setBounds(166, 34, 187, 13);
 		getFrame().getContentPane().add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(panel);
 	}
 
 	public JFrame getFrame() {
