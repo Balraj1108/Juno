@@ -1,26 +1,30 @@
 package it.giococarteuno.view;
 
 import java.awt.EventQueue;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import it.giococarteuno.FinestraPrincipaleMain;
 import it.giococarteuno.dao.UtenteDAO;
 import it.giococarteuno.model.Utente;
 
-public class test extends JFrame {
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class Testt extends JFrame {
 
 	private JFrame frame;
-	private JLabel lblNewLabel;
 	private JTextField textField;
 	private static  Utente stringaNickname;
 	private Benvenuto benvenuto = new Benvenuto();
-	
 
 	/**
 	 * Launch the application.
@@ -29,7 +33,7 @@ public class test extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					test window = new test();
+					Testt window = new Testt();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,46 +41,38 @@ public class test extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public test() {
-		initialize();
-	}
 	
 	private void showError() {
         JOptionPane.showMessageDialog(this, "Nickname non esistente. Registrati", "Errore", JOptionPane.ERROR_MESSAGE);
     }
 
 	/**
+	 * Create the application.
+	 */
+	public Testt() {
+		
+		initialize();
+		ProvaBen p = new ProvaBen();
+	}
+
+	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Juno");
-		
+		frame = new JFrame("Junoo");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(48, 87, 45, 13);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		//frame.setLocationRelativeTo(null);//per centrare il frame
-		
-		
-		
-		
-		lblNewLabel = new JLabel("Nickname:");
-		lblNewLabel.setBounds(0, 0, 436, 263);
-		frame.getContentPane().add(lblNewLabel);
-		getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(109, 21, 261, 20);
+		textField.setBounds(195, 41, 96, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Nickname:");
+		lblNewLabel.setBounds(98, 44, 69, 13);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -101,28 +97,62 @@ public class test extends JFrame {
 				btnNewButton.setVisible(false);
 				textField.setVisible(false);
 				
-//				Benvenuto benvenuto = new Benvenuto();
-//				frame.getContentPane().add(benvenuto);
-				benvenuto.setVisible(true);
+				
+				
+				frame.getContentPane().add(ProvaBen.initialize());
+				
+				//iniziaBenvenuto();
 				
 				
 			}
 		});
-		
-		
-		
-		btnNewButton.setBounds(190, 52, 89, 23);
+		btnNewButton.setBounds(195, 70, 85, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		
 		
 //		frame.getContentPane().add(benvenuto);
-//		benvenuto.setVisible(false);
+//		benvenuto.setVisible(true);
 		
-//		setLayout(null);
-		//panel.setVisible(true);
+
 		
 		
+	}
+	
+//	public void provaBen() {
+//		JPanel panel = new JPanel();
+//		panel.setBounds(0, 0, 436, 263);
+//		JButton btnNewButton = new JButton("Gioca");
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				//per chiudere la finestra corrente
+//				JComponent comp = (JComponent) e.getSource();
+//				Window win = SwingUtilities.getWindowAncestor(comp);
+//				win.dispose();
+//				
+//				FinestraGioco fGioco = new FinestraGioco();
+//				fGioco.getFrame().setVisible(true);
+//				
+//				
+//			}
+//		});
+//		btnNewButton.setBounds(166, 94, 89, 23);
+//		frame.getContentPane().add(btnNewButton);
+//	}
+	
+	public void iniziaBenvenuto() {
+		Benvenuto benvenuto = new Benvenuto();
+		frame.getContentPane().add(benvenuto);
+		benvenuto.setVisible(true);
+	}
+	
+	public static Utente getStringaNickname() {
+		return stringaNickname;
+	}
+
+	public static void setStringaNickname(Utente stringaNickname) {
+		Testt.stringaNickname = stringaNickname;
 	}
 	
 	public JFrame getFrame() {
@@ -132,13 +162,4 @@ public class test extends JFrame {
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
-
-	public static Utente getStringaNickname() {
-		return stringaNickname;
-	}
-
-	public static void setStringaNickname(Utente stringaNickname) {
-		test.stringaNickname = stringaNickname;
-	}
-
 }

@@ -1,6 +1,8 @@
 package it.giococarteuno.view;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -8,22 +10,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import it.giococarteuno.FinestraPrincipaleMain;
-
-public class Benvenuto extends JPanel {
-	private JTextField textField;
-	
-	
+public class TestBenv extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Benvenuto() {
+	public TestBenv() {
 		initialize();
 	}
 	
@@ -32,7 +25,7 @@ public class Benvenuto extends JPanel {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 436, 263);
+		panel.setBounds(100, 100, 450, 300);
 //		JButton btnNewButton = new JButton("New button");
 //		btnNewButton.setBounds(93, 159, 85, 21);
 //		add(btnNewButton);
