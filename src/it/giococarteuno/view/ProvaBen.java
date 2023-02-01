@@ -2,6 +2,9 @@ package it.giococarteuno.view;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import it.giococarteuno.FinestraPrincipaleMain;
+
 import javax.swing.JLabel;
 
 import java.awt.Component;
@@ -11,15 +14,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import net.miginfocom.swing.MigLayout;
 
 public class ProvaBen extends JPanel {
 	
 	public ProvaBen() {
-		setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(62, 217, 85, 21);
-		add(btnNewButton_1);
+		initialize();
 	}
 
 	/**
@@ -27,9 +28,15 @@ public class ProvaBen extends JPanel {
 	 */
 	
 	
-	public static Component initialize() {
+	public  Component  initialize() {
+		
+		
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 436, 263);
+		panel.setLayout(new MigLayout("fillx, debug", "[][][][][]", "[50][][][][]"));
+		
 		JButton btnNewButton = new JButton("Gioca");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -45,8 +52,23 @@ public class ProvaBen extends JPanel {
 				
 			}
 		});
-		btnNewButton.setBounds(160, 94, 89, 23);
-		return btnNewButton;
+		
+		JLabel lblNewLabel = new JLabel("Bentornato: " + Testt.getStringaNickname().getNickname());
+		panel.add(lblNewLabel, "cell 2 0");
+		
+		panel.add(btnNewButton,"cell 2 1,growx");
+		
+		
+		
+		JButton btnNewButton_1 = new JButton("Profilo");
+		panel.add(btnNewButton_1,"cell 2 2,growx");
+		
+		JButton btnNewButton_1_1 = new JButton("Esci");
+		panel.add(btnNewButton_1_1, "cell 2 3,growx");
+		
+		
+		return panel;
+		
 	}
 
 }

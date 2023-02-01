@@ -18,13 +18,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import net.miginfocom.swing.MigLayout;
+import java.awt.BorderLayout;
 
 public class Testt extends JFrame {
 
 	private JFrame frame;
 	private JTextField textField;
 	private static  Utente stringaNickname;
-	private Benvenuto benvenuto = new Benvenuto();
+	
 
 	/**
 	 * Launch the application.
@@ -52,7 +54,6 @@ public class Testt extends JFrame {
 	public Testt() {
 		
 		initialize();
-		ProvaBen p = new ProvaBen();
 	}
 
 	/**
@@ -63,16 +64,20 @@ public class Testt extends JFrame {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		frame.getContentPane().setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(195, 41, 96, 19);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		//frame.getContentPane().setLayout(new MigLayout("", "[69px][96px][][]", "[19px][21px][][][]"));
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 436, 263);
+		panel.setLayout(new MigLayout("fillx", "[48px][96px][][57px][75px]", "[21px][][][][]"));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("Nickname:");
-		lblNewLabel.setBounds(98, 44, 69, 13);
-		frame.getContentPane().add(lblNewLabel);
+		//frame.getContentPane().add(lblNewLabel, "cell 1 2,alignx center,aligny center");
+		panel.add(lblNewLabel, "cell 1 2,alignx center,aligny center");
+		
+		textField = new JTextField();
+		//frame.getContentPane().add(textField, "cell 2 2,alignx left,aligny top");
+		textField.setColumns(10);
+		panel.add(textField, "cell 2 2,growx,aligny top");
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -93,22 +98,27 @@ public class Testt extends JFrame {
 				
 				System.out.println(stringaNickname + "variabile");
 				
-				lblNewLabel.setVisible(false);
-				btnNewButton.setVisible(false);
-				textField.setVisible(false);
+//				lblNewLabel.setVisible(false);
+//				btnNewButton.setVisible(false);
+//				textField.setVisible(false);
 				
 				
+				ProvaBen p = new ProvaBen();
 				
-				frame.getContentPane().add(ProvaBen.initialize());
+				frame.getContentPane().add(p.initialize());
+				panel.setVisible(false);
 				
 				//iniziaBenvenuto();
 				
 				
 			}
 		});
-		btnNewButton.setBounds(195, 70, 85, 21);
-		frame.getContentPane().add(btnNewButton);
+		//frame.getContentPane().add(btnNewButton, "cell 1 3,growx,aligny top");
+		panel.add(btnNewButton, "cell 2 3,growx,aligny top");
 		
+		JButton btnNewButton_1 = new JButton("Registrati");
+		//frame.getContentPane().add(btnNewButton_1, "cell 2 4,growx");
+		panel.add(btnNewButton_1, "cell 2 4,growx,aligny top");
 		
 		
 //		frame.getContentPane().add(benvenuto);
