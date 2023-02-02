@@ -64,6 +64,12 @@ public class ProvaBen extends JPanel {
 		panel.add(btnNewButton_1,"cell 2 2,growx");
 		
 		JButton btnNewButton_1_1 = new JButton("Esci");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Testt.showMain();
+				panel.setVisible(false);
+			}
+		});
 		panel.add(btnNewButton_1_1, "cell 2 3,growx");
 		
 		

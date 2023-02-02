@@ -26,6 +26,7 @@ public class Testt extends JFrame {
 	private JFrame frame;
 	private JTextField textField;
 	private static  Utente stringaNickname;
+	private static JPanel panel = new JPanel();
 	
 
 	/**
@@ -44,10 +45,6 @@ public class Testt extends JFrame {
 		});
 	}
 	
-	private void showError() {
-        JOptionPane.showMessageDialog(this, "Nickname non esistente. Registrati", "Errore", JOptionPane.ERROR_MESSAGE);
-    }
-
 	/**
 	 * Create the application.
 	 */
@@ -55,6 +52,19 @@ public class Testt extends JFrame {
 		
 		initialize();
 	}
+	
+	
+	private void showError() {
+        JOptionPane.showMessageDialog(this, "Nickname non esistente. Registrati", "Errore", JOptionPane.ERROR_MESSAGE);
+    }
+	
+	public static  void showMain() {
+		
+		panel.setVisible(true);
+		
+	}
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -65,7 +75,7 @@ public class Testt extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		//frame.getContentPane().setLayout(new MigLayout("", "[69px][96px][][]", "[19px][21px][][][]"));
-		JPanel panel = new JPanel();
+		
 		panel.setBounds(0, 0, 436, 263);
 		panel.setLayout(new MigLayout("fillx", "[48px][96px][][57px][75px]", "[21px][][][][]"));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -86,6 +96,7 @@ public class Testt extends JFrame {
 				
 				UtenteDAO utenteDAO = new UtenteDAO();
 				String nicknameText = textField.getText();
+				textField.setText("");
 				System.out.println(nicknameText + " testo che inserisco io");
 				System.out.println(utenteDAO.findByNickname(nicknameText));
 				setStringaNickname(utenteDAO.findByNickname(nicknameText));
@@ -117,6 +128,16 @@ public class Testt extends JFrame {
 		panel.add(btnNewButton, "cell 2 3,growx,aligny top");
 		
 		JButton btnNewButton_1 = new JButton("Registrati");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FinRegistrazione finReg = new FinRegistrazione();
+				
+				frame.getContentPane().add(finReg.initialize());
+				panel.setVisible(false);
+				
+			}
+		});
 		//frame.getContentPane().add(btnNewButton_1, "cell 2 4,growx");
 		panel.add(btnNewButton_1, "cell 2 4,growx,aligny top");
 		
@@ -151,11 +172,11 @@ public class Testt extends JFrame {
 //		frame.getContentPane().add(btnNewButton);
 //	}
 	
-	public void iniziaBenvenuto() {
-		Benvenuto benvenuto = new Benvenuto();
-		frame.getContentPane().add(benvenuto);
-		benvenuto.setVisible(true);
-	}
+//	public void iniziaBenvenuto() {
+//		Benvenuto benvenuto = new Benvenuto();
+//		frame.getContentPane().add(benvenuto);
+//		benvenuto.setVisible(true);
+//	}
 	
 	public static Utente getStringaNickname() {
 		return stringaNickname;
@@ -172,4 +193,14 @@ public class Testt extends JFrame {
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+	
+	
 }
