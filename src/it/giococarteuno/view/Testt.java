@@ -23,7 +23,7 @@ import java.awt.BorderLayout;
 
 public class Testt extends JFrame {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField textField;
 	private static  Utente stringaNickname;
 	private static JPanel panel = new JPanel();
@@ -37,7 +37,8 @@ public class Testt extends JFrame {
 			public void run() {
 				try {
 					Testt window = new Testt();
-					window.frame.setVisible(true);
+					getFrame().setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,6 +62,27 @@ public class Testt extends JFrame {
 	public static  void showMain() {
 		
 		panel.setVisible(true);
+		
+	}
+	
+	public static  void addProfilo() {
+		
+		ProfiloT pro = new ProfiloT();
+		frame.getContentPane().add(pro.initialize());
+		
+	}
+	
+	public static  void addModificaProfilo() {
+		
+		ModificaProfiloT modPro = new ModificaProfiloT();
+		frame.getContentPane().add(modPro.initialize());
+		
+	}
+	
+	public static  void addBenvenuto() {
+		
+		ProvaBen p = new ProvaBen();
+		frame.getContentPane().add(p.initialize());
 		
 	}
 	
@@ -114,9 +136,7 @@ public class Testt extends JFrame {
 //				textField.setVisible(false);
 				
 				
-				ProvaBen p = new ProvaBen();
-				
-				frame.getContentPane().add(p.initialize());
+				addBenvenuto();
 				panel.setVisible(false);
 				
 				//iniziaBenvenuto();
@@ -134,6 +154,7 @@ public class Testt extends JFrame {
 				FinRegistrazione finReg = new FinRegistrazione();
 				
 				frame.getContentPane().add(finReg.initialize());
+				textField.setText("");
 				panel.setVisible(false);
 				
 			}
@@ -186,12 +207,12 @@ public class Testt extends JFrame {
 		Testt.stringaNickname = stringaNickname;
 	}
 	
-	public JFrame getFrame() {
+	public static JFrame getFrame() {
 		return frame;
 	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	public static void setFrame(JFrame frame) {
+		Testt.frame = frame;
 	}
 
 	public JPanel getPanel() {
@@ -201,6 +222,7 @@ public class Testt extends JFrame {
 	public void setPanel(JPanel panel) {
 		this.panel = panel;
 	}
+	
 	
 	
 }

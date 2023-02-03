@@ -18,6 +18,9 @@ import net.miginfocom.swing.MigLayout;
 
 public class ProvaBen extends JPanel {
 	
+	
+	private static JPanel panel;
+	
 	public ProvaBen() {
 		
 		initialize();
@@ -33,9 +36,9 @@ public class ProvaBen extends JPanel {
 		
 		
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 436, 263);
-		panel.setLayout(new MigLayout("fillx, debug", "[][][][][]", "[50][][][][]"));
+		panel.setLayout(new MigLayout("fillx", "[][][][][]", "[50][][][][]"));
 		
 		JButton btnNewButton = new JButton("Gioca");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -61,6 +64,17 @@ public class ProvaBen extends JPanel {
 		
 		
 		JButton btnNewButton_1 = new JButton("Profilo");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Testt.addProfilo();
+//				pro.setEnabled(true);
+//				System.out.println("prima false profilo");
+				panel.setVisible(false);
+				
+				
+			}
+		});
 		panel.add(btnNewButton_1,"cell 2 2,growx");
 		
 		JButton btnNewButton_1_1 = new JButton("Esci");
@@ -75,6 +89,10 @@ public class ProvaBen extends JPanel {
 		
 		return panel;
 		
+	}
+	
+	public static void showBen() {
+		panel.setVisible(true);
 	}
 
 }
