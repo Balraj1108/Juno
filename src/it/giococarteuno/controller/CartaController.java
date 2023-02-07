@@ -3,7 +3,7 @@ package it.giococarteuno.controller;
 import java.util.Iterator;
 import java.util.Random;
 
-import it.giococarteuno.FinestraPrincipaleMain;
+import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.model.Carta;
 import it.giococarteuno.model.Colore;
 import it.giococarteuno.model.Mazzo;
@@ -15,7 +15,7 @@ public class CartaController {
 	
 	public void iniziaMano() {
 		for(int i=0; i < 7; i++) {
-			FinestraPrincipaleMain.getStringaNickname().getCarteMano().add(generaCarta());
+			MainFinestraIniziale.getStringaNickname().getCarteMano().add(generaCarta());
 		}
 	}
 	

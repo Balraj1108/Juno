@@ -1,106 +1,98 @@
 package it.giococarteuno.view;
 
-import java.awt.EventQueue;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-import javax.swing.JFrame;
+import it.giococarteuno.MainFinestraIniziale;
 
-import it.giococarteuno.FinestraPrincipaleMain;
+import javax.swing.JLabel;
+
+import java.awt.Component;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JComponent;
+import net.miginfocom.swing.MigLayout;
 
-public class FinestraBenvenuto {
-
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FinestraBenvenuto window = new FinestraBenvenuto();
-					window.getFrame().setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+public class FinestraBenvenuto extends JPanel {
+	
+	
+	private static JPanel panel;
+	
 	public FinestraBenvenuto() {
+		
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create the panel.
 	 */
-	private void initialize() {
-		setFrame(new JFrame("Benvenuto"));
-		getFrame().setBounds(100, 100, 450, 300);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getFrame().getContentPane().setLayout(null);
+	
+	
+	public  Component  initialize() {
+		
+		
+		
+		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 436, 263);
+		panel.setLayout(new MigLayout("fillx", "[][][][][]", "[50][][][][]"));
 		
 		JButton btnNewButton = new JButton("Gioca");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//per chiudere la finestra corrente
+				JComponent comp = (JComponent) e.getSource();
+				Window win = SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+				
 				FinestraGioco fGioco = new FinestraGioco();
 				fGioco.getFrame().setVisible(true);
-				getFrame().dispose();
+				
+				
 			}
 		});
-		btnNewButton.setBounds(166, 94, 89, 23);
-		getFrame().getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Bentornato: " + MainFinestraIniziale.getStringaNickname().getNickname());
+		panel.add(lblNewLabel, "cell 2 0");
+		
+		panel.add(btnNewButton,"cell 2 1,growx");
+		
+		
 		
 		JButton btnNewButton_1 = new JButton("Profilo");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Profilo fProfilo = new Profilo();
-				fProfilo.getFrame().setVisible(true);
-				getFrame().dispose();
+				
+				MainFinestraIniziale.addProfilo();
+//				pro.setEnabled(true);
+//				System.out.println("prima false profilo");
+				panel.setVisible(false);
+				
+				
 			}
 		});
-		btnNewButton_1.setBounds(166, 153, 89, 23);
-		getFrame().getContentPane().add(btnNewButton_1);
+		panel.add(btnNewButton_1,"cell 2 2,growx");
 		
-		JButton btnNewButton_2 = new JButton("Esci");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnNewButton_1_1 = new JButton("Esci");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FinestraPrincipaleMain fPrincipale = new FinestraPrincipaleMain();
-				fPrincipale.getFrame().setVisible(true);
-				getFrame().dispose();
+				MainFinestraIniziale.showMain();
+				panel.setVisible(false);
 			}
 		});
-		
-		btnNewButton_2.setBounds(166, 206, 89, 23);
-		getFrame().getContentPane().add(btnNewButton_2);
+		panel.add(btnNewButton_1_1, "cell 2 3,growx");
 		
 		
-
-		System.out.println(FinestraPrincipaleMain.getStringaNickname().getNickname());
-		JLabel lblNewLabel = new JLabel("Bentornato " + FinestraPrincipaleMain.getStringaNickname().getNickname());
-		lblNewLabel.setBounds(166, 34, 187, 13);
-		getFrame().getContentPane().add(lblNewLabel);
+		return panel;
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 436, 263);
-		frame.getContentPane().add(panel);
 	}
-
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	
+	public static void showBen() {
+		panel.setVisible(true);
 	}
 
 }

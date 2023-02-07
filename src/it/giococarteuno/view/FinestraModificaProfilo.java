@@ -8,19 +8,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.dao.UtenteDAO;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ModificaProfiloT extends JPanel {
+public class FinestraModificaProfilo extends JPanel {
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public ModificaProfiloT() {
+	public FinestraModificaProfilo() {
 		initialize();
 	}
 	
@@ -41,7 +42,7 @@ public class ModificaProfiloT extends JPanel {
 		JLabel lblNewLabel = new JLabel("Nickname:");
 		panel.add(lblNewLabel, "flowx,cell 1 1,alignx center");
 		
-		textField = new JTextField(Testt.getStringaNickname().getNickname());
+		textField = new JTextField(MainFinestraIniziale.getStringaNickname().getNickname());
 		panel.add(textField, "cell 1 1,alignx center");
 		textField.setColumns(10);
 		
@@ -63,16 +64,16 @@ public class ModificaProfiloT extends JPanel {
 				else
 				{
 					utenteDAO.update(nicknameText, 
-					Testt.getStringaNickname().getId());
+					MainFinestraIniziale.getStringaNickname().getId());
 					
-					Testt.getStringaNickname().setNickname(nicknameText);
+					MainFinestraIniziale.getStringaNickname().setNickname(nicknameText);
 					
 					
 //					Profilo fProfilo = new Profilo();
 //					fProfilo.getFrame().setVisible(true);
 //					frame.dispose();
 					panel.setVisible(false);
-					Testt.addProfilo();
+					MainFinestraIniziale.addProfilo();
 					showSuccess();
 				}
 			}
@@ -83,7 +84,7 @@ public class ModificaProfiloT extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ProfiloT.showPro();
+				FinestraProfilo.showPro();
 				panel.setVisible(false);
 			}
 		});

@@ -1,4 +1,4 @@
-package it.giococarteuno.view;
+package it.giococarteuno;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -9,9 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import it.giococarteuno.FinestraPrincipaleMain;
 import it.giococarteuno.dao.UtenteDAO;
 import it.giococarteuno.model.Utente;
+import it.giococarteuno.view.FinestraRegistrazione;
+import it.giococarteuno.view.FinestraModificaProfilo;
+import it.giococarteuno.view.FinestraProfilo;
+import it.giococarteuno.view.FinestraBenvenuto;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,7 +24,7 @@ import javax.swing.JComponent;
 import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 
-public class Testt extends JFrame {
+public class MainFinestraIniziale extends JFrame {
 
 	private static JFrame frame;
 	private JTextField textField;
@@ -36,7 +39,7 @@ public class Testt extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Testt window = new Testt();
+					MainFinestraIniziale window = new MainFinestraIniziale();
 					getFrame().setVisible(true);
 					
 				} catch (Exception e) {
@@ -49,7 +52,7 @@ public class Testt extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Testt() {
+	public MainFinestraIniziale() {
 		
 		initialize();
 	}
@@ -67,21 +70,21 @@ public class Testt extends JFrame {
 	
 	public static  void addProfilo() {
 		
-		ProfiloT pro = new ProfiloT();
+		FinestraProfilo pro = new FinestraProfilo();
 		frame.getContentPane().add(pro.initialize());
 		
 	}
 	
 	public static  void addModificaProfilo() {
 		
-		ModificaProfiloT modPro = new ModificaProfiloT();
+		FinestraModificaProfilo modPro = new FinestraModificaProfilo();
 		frame.getContentPane().add(modPro.initialize());
 		
 	}
 	
 	public static  void addBenvenuto() {
 		
-		ProvaBen p = new ProvaBen();
+		FinestraBenvenuto p = new FinestraBenvenuto();
 		frame.getContentPane().add(p.initialize());
 		
 	}
@@ -151,7 +154,7 @@ public class Testt extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FinRegistrazione finReg = new FinRegistrazione();
+				FinestraRegistrazione finReg = new FinestraRegistrazione();
 				
 				frame.getContentPane().add(finReg.initialize());
 				textField.setText("");
@@ -204,7 +207,7 @@ public class Testt extends JFrame {
 	}
 
 	public static void setStringaNickname(Utente stringaNickname) {
-		Testt.stringaNickname = stringaNickname;
+		MainFinestraIniziale.stringaNickname = stringaNickname;
 	}
 	
 	public static JFrame getFrame() {
@@ -212,7 +215,7 @@ public class Testt extends JFrame {
 	}
 
 	public static void setFrame(JFrame frame) {
-		Testt.frame = frame;
+		MainFinestraIniziale.frame = frame;
 	}
 
 	public JPanel getPanel() {
