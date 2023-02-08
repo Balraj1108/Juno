@@ -9,14 +9,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
+import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FinestraGioco {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -41,6 +46,13 @@ public class FinestraGioco {
 	 */
 	public FinestraGioco() {
 		initialize();
+	}
+	
+	public static  void addFinCarteMano() {
+		
+		FinestraCarteMano p = new FinestraCarteMano();
+		frame.getContentPane().add(p.initialize());
+		
 	}
 
 	/**
@@ -69,37 +81,60 @@ public class FinestraGioco {
 		//frame.getContentPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
 		CartaController controller = new CartaController();
 		//carico quello che voglio io
-		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
-		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
-		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
+//		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
+//		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
+//		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
 		
-		
-		JLabel lblNewLabel = new JLabel(image);
-		lblNewLabel.setBounds(675, 534, 73, 136);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel(image1);
-		lblNewLabel_1.setBounds(786, 534, 73, 136);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel(image2);
-		lblNewLabel_1_1.setBounds(581, 534, 73, 136);
-		frame.getContentPane().add(lblNewLabel_1_1);
-		
-		JButton btnNewButton = new JButton(image);
-		btnNewButton.setBounds(439, 534, 85, 136);
+		JButton btnNewButton = new JButton(new ImageIcon("assets\\backSx.png"));
+		btnNewButton.setBounds(454, 299, 111, 74);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton(new ImageIcon("assets\\"+ controller.generaCarta() + ".png"));
+		btnNewButton_1.setBounds(669, 414, 74, 111);
+		frame.getContentPane().add(btnNewButton_1);
+		
+//		JPanel panel = new JPanel();
+//		panel.setBounds(298, 524, 740, 146);
+//		frame.getContentPane().add(panel);
+		
+//		FinestraCarteMano p = new FinestraCarteMano();
+//		frame.getContentPane().add(p.initialize());
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(298, 10, 740, 146);
+		frame.getContentPane().add(panel_1);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBounds(10, 44, 146, 592);
+		frame.getContentPane().add(panel_1_1);
+		
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setBounds(1194, 44, 146, 592);
+		frame.getContentPane().add(panel_1_1_1);
+		
+		
+		//mazzo da cui pescare
+		JButton btnNewButton_1_1 = new JButton(new ImageIcon("assets\\backMazzo.png"));
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CartaController ctrl = new CartaController();
+				ctrl.pescaCarta();
+			}
+		});
+		btnNewButton_1_1.setBounds(669, 281, 74, 111);
+		frame.getContentPane().add(btnNewButton_1_1);
 		
 		
 		
 		
 	}
 
-	public JFrame getFrame() {
+	
+	public static JFrame getFrame() {
 		return frame;
 	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	public static void setFrame(JFrame frame) {
+		FinestraGioco.frame = frame;
 	}
 }
