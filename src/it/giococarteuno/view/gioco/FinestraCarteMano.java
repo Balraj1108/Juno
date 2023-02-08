@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import javax.swing.OverlayLayout;
 import javax.swing.JLabel;
 
 public class FinestraCarteMano extends JPanel {
@@ -42,7 +43,10 @@ public class FinestraCarteMano extends JPanel {
 		panel = new JPanel();
 		panel.setBounds(292, 524, 740, 146);
 		add(panel);
+		OverlayLayout overlay = new OverlayLayout(panel);
+		panel.setLayout(overlay);
 		//panel.setLayout(new FlowLayout(FlowLayout.CENTER, -10, 30));
+		//panel.setLayout(null);
 		
 		
 //		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ controller.generaCarta() + ".png"));

@@ -24,7 +24,7 @@ import it.giococarteuno.view.gioco.FinestraCarteMano;
 public class CartaController {
 	
 	public static int numCarteMano = 0;
-	public static int pos = 0;
+	public static Float pos = 0.01f;
 	
 	public void iniziaMano() {
 		for(int i=0; i < 7; i++) {
@@ -64,9 +64,10 @@ public class CartaController {
 		return mazzo;
 	}
 	
-	public void addCartaMano() {
+	public void addCartaMano(Float pCarta) {
 		
-		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
+		JButton btnNewButton = new JButton();
+		btnNewButton.setIcon(new ImageIcon("assets\\"+ generaCarta() + ".png"));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -84,33 +85,36 @@ public class CartaController {
 		});
 
 		
-		Dimension d = new Dimension();
-		d.width = 74;
-		d.height = 111;
-		btnNewButton.setPreferredSize(d);
+		Dimension d = new Dimension(74,111);
+//		d.width = 74;
+//		d.height = 111;
+		btnNewButton.setMaximumSize(d);
+		btnNewButton.setAlignmentX(0.5f+pCarta);
+		btnNewButton.setAlignmentY(1f);
+//		btnNewButton.setBounds(pCarta, 35, 74, 111);
 		
-		JButton btnNewButton1 = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
-		btnNewButton1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Point p = btnNewButton1.getLocation();
-				p.y -= 25;
-				btnNewButton1.setLocation(p);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				Point p = btnNewButton1.getLocation();
-				p.y += 25;
-				btnNewButton1.setLocation(p);
-          }
-		});
-
-		
-		Dimension d1 = new Dimension();
-		d1.width = 74;
-		d1.height = 111;
-		btnNewButton1.setPreferredSize(d1);
+//		JButton btnNewButton1 = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
+//		btnNewButton1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				Point p = btnNewButton1.getLocation();
+//				p.y -= 25;
+//				btnNewButton1.setLocation(p);
+//			}
+//			
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				Point p = btnNewButton1.getLocation();
+//				p.y += 25;
+//				btnNewButton1.setLocation(p);
+//          }
+//		});
+//
+//		
+//		Dimension d1 = new Dimension();
+//		d1.width = 74;
+//		d1.height = 111;
+//		btnNewButton1.setPreferredSize(d1);
 		
 //		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
 //		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -136,15 +140,18 @@ public class CartaController {
 		
 		//System.out.println(finCarteMano.getComponents().length);
 		//FinestraGioco.addFinCarteMano();
-		FinestraCarteMano.getPanel().setLayout(new FlowLayout(FlowLayout.CENTER, -100, 30));
+		//FinestraCarteMano.getPanel().setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
 		FinestraCarteMano.getPanel().add(btnNewButton);
-		FinestraCarteMano.getPanel().add(btnNewButton1);
+		//FinestraCarteMano.getPanel().add(btnNewButton1);
 		//numCarteMano++;
-		//FinestraCarteMano.getPanel().setVisible(true);
+		//FinestraGioco.getFrame().repaint();
+		//FinestraCarteMano.getPanel().validate();
 		//FinestraGioco.getFrame().repaint();
 		//FinestraGioco.addFinCarteMano();
+		FinestraCarteMano.getPanel().repaint();
+		FinestraCarteMano.getPanel().validate();
 		//System.out.println(FinestraCarteMano.contaCarte());
-		System.out.println("ciao");
+		//System.out.println("ciao");
 		
 	}
 	
@@ -152,9 +159,9 @@ public class CartaController {
 //		System.out.println(numCarteMano);
 		
 			
-			addCartaMano();
-			pos++;
-//			numCarteMano++;
+			addCartaMano(pos);
+			pos+=0.02f;
+			numCarteMano++;
 //		int pCarta = 74;
 //		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
 //		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -182,7 +189,7 @@ public class CartaController {
 //		//FinestraGioco.addFinCarteMano();
 //		//System.out.println(FinestraCarteMano.contaCarte());
 			
-//		System.out.println(pos+"pos");
+		System.out.println(pos+"pos");
 //		System.out.println(numCarteMano);
 		//FinestraCarteMano.rep();
 	}
