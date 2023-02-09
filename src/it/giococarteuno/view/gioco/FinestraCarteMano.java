@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import it.giococarteuno.controller.CartaController;
 import net.miginfocom.swing.MigLayout;
@@ -17,12 +18,15 @@ import javax.swing.Icon;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.OverlayLayout;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
 
 public class FinestraCarteMano extends JPanel {
 	
 	private static JPanel panel;
-
 	/**
 	 * Create the panel.
 	 */
@@ -43,9 +47,20 @@ public class FinestraCarteMano extends JPanel {
 		panel = new JPanel();
 		panel.setBounds(292, 524, 740, 146);
 		add(panel);
-		OverlayLayout overlay = new OverlayLayout(panel);
-		panel.setLayout(overlay);
-		//panel.setLayout(new FlowLayout(FlowLayout.CENTER, -10, 30));
+		
+//		System.out.println("dentro cartemano");
+//		jPane = new JScrollPane(panel);
+//		add(jPane);
+//		JScrollPane jPane = new JScrollPane(this, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+//			    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//		panel.add(jPane);
+//		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		//panel.add(jPane);
+		//add(jPane);
+		//panel.add(jPane);
+		//OverlayLayout overlay = new OverlayLayout(panel);
+		//panel.setLayout(overlay);
+		//panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 35));
 		//panel.setLayout(null);
 		
 		
@@ -253,10 +268,6 @@ public class FinestraCarteMano extends JPanel {
 		
 		
 		
-	}
-	
-	public static void rep() {
-		panel.repaint();
 	}
 	
 	public static JPanel getPanel() {

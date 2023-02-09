@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
+import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 import javax.swing.Icon;
@@ -52,7 +53,7 @@ public class FinestraGioco {
 		
 		FinestraCarteMano p = new FinestraCarteMano();
 		frame.getContentPane().add(p.initialize());
-		
+		System.out.println("addPanelCartaManoAlFrame");
 	}
 
 	/**
@@ -85,24 +86,35 @@ public class FinestraGioco {
 //		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
 //		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
 		
-		JButton btnNewButton = new JButton(new ImageIcon("assets\\backSx.png"));
-		btnNewButton.setBounds(454, 299, 111, 74);
-		frame.getContentPane().add(btnNewButton);
+		
 		
 		JButton btnNewButton_1 = new JButton(new ImageIcon("assets\\"+ controller.generaCarta() + ".png"));
-		btnNewButton_1.setBounds(669, 414, 74, 111);
+		btnNewButton_1.setBounds(547, 322, 74, 111);
 		frame.getContentPane().add(btnNewButton_1);
 		
 //		JPanel panel = new JPanel();
 //		panel.setBounds(298, 524, 740, 146);
 //		frame.getContentPane().add(panel);
 		
-//		FinestraCarteMano p = new FinestraCarteMano();
-//		frame.getContentPane().add(p.initialize());
+		FinestraCarteMano p = new FinestraCarteMano();
+		frame.getContentPane().add(p.initialize());
+		//System.out.println("dentroFinestraGioco");
+		CartaController ctrl = new CartaController();
+		for(int i = 0; i < 7; i++) {
+			ctrl.pescaCarta();
+		}
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(298, 10, 740, 146);
-		frame.getContentPane().add(panel_1);
+		
+		FinestraBotSx finBotSx = new FinestraBotSx();
+		frame.getContentPane().add(finBotSx.initialize());
+		for(int i = 0; i < 7; i++) {
+			ctrl.addCartaBotSx();
+		}
+		
+		//sopra
+//		JPanel panel_1 = new JPanel();
+//		panel_1.setBounds(298, 10, 740, 146);
+//		frame.getContentPane().add(panel_1);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBounds(10, 44, 146, 592);
@@ -121,7 +133,7 @@ public class FinestraGioco {
 				ctrl.pescaCarta();
 			}
 		});
-		btnNewButton_1_1.setBounds(669, 281, 74, 111);
+		btnNewButton_1_1.setBounds(692, 322, 74, 111);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		
