@@ -4,24 +4,21 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-public class FinestraBotSx extends JPanel {
+public class FinestraBotDx extends JPanel {
 
 	private static JPanel panel;
 	
 	/**
 	 * Create the panel.
 	 */
-	public FinestraBotSx() {
-
+	public FinestraBotDx() {
 		initialize();
 	}
-
+	
 	public Component initialize() {
 		setLayout(null);
 		panel = new JPanel();
-		//panel.setBounds(10, 44, 146, 592);
-		
-		panel.setBounds(10, 280, 146, 148);
+		panel.setBounds(1194, 44, 146, 592);
 		add(panel);
 		
 		return panel;
@@ -32,6 +29,7 @@ public class FinestraBotSx extends JPanel {
 	}
 
 	public static  void setPanel(JPanel panel) {
-		FinestraBotSx.panel = panel;
+		FinestraBotDx.panel = panel;
 	}
+
 }

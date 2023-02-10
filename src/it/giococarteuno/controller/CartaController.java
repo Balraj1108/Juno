@@ -4,9 +4,15 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -22,6 +28,8 @@ import it.giococarteuno.model.Colore;
 import it.giococarteuno.model.Mazzo;
 import it.giococarteuno.model.Valore;
 import it.giococarteuno.view.FinestraGioco;
+import it.giococarteuno.view.gioco.FinestraBotDx;
+import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
@@ -30,6 +38,8 @@ public class CartaController {
 	public static int var = 0;
 	public static int pos = 0;
 	public static int meno = 10;
+	public static int cont = 0;
+	public static Carta carta;
 	
 	public void iniziaMano() {
 		for(int i=0; i < 7; i++) {
@@ -42,13 +52,15 @@ public class CartaController {
 //	int randomNum = rand.nextInt(4);
 	
 	public Carta generaCarta() {
-		
+		//System.out.println(cont);
+		cont++;
 		Random rand = new Random();
 		int randomNum = rand.nextInt(4);
 		//System.out.println(randomNum);
 		return generaMazzo().getMazzo().get(randomNum);
 		
 	}
+
 	
 	public Mazzo generaMazzo() {
 		Mazzo mazzo = new Mazzo();
@@ -69,25 +81,90 @@ public class CartaController {
 		return mazzo;
 	}
 	
+	public static boolean isMouseWithinComponent(JButton c)
+	{
+	    Point mousePos = MouseInfo.getPointerInfo().getLocation();
+	    Rectangle bounds = c.getBounds();
+	    bounds.setLocation(c.getLocationOnScreen());
+	    return bounds.contains(mousePos);
+	}
+	
 	public void addCartaMano() {
 		
 		JButton btnNewButton = new JButton();
-		btnNewButton.setIcon(new ImageIcon("assets\\"+ generaCarta() + ".png"));
+		carta = generaCarta();
+		btnNewButton.setIcon(new ImageIcon("assets\\"+ carta.getValore() + "_" + carta.getColore()  + ".png"));
+		
+		
+		
+		
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
+				
 				Point p = btnNewButton.getLocation();
 				p.y -= 27;
 				btnNewButton.setLocation(p);
+				//System.out.println(btnNewButton.getLocation());
+				
 			}
-			
 			@Override
 			public void mouseExited(MouseEvent e) {
+				
+				
 				Point p = btnNewButton.getLocation();
 				p.y += 27;
 				btnNewButton.setLocation(p);
-          }
+				if(btnNewButton.getY() > 35) {
+					p.y = 35;
+					btnNewButton.setLocation(p);
+				}
+				//System.out.println(btnNewButton.getLocation());
+			}
+				
+          
 		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("dentro bottone carta");
+				
+				JButton cartaScar = FinestraGioco.getCartaScartata();
+				//System.out.println(cartaScar.getIcon());
+				//System.out.println(btnNewButton.getIcon());
+				if(cartaScar.getIcon().toString().equals("")) {
+					
+					//System.out.println("dentro primo if");
+					cartaScar.setIcon(btnNewButton.getIcon());
+					FinestraCarteMano.getPanel().remove(btnNewButton);
+					//FinestraCarteMano.getPanel().repaint();
+					//FinestraCarteMano.getPanel().validate();
+				}
+				
+				
+				//Arrays.asList(null);
+				
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.'\']");
+				String[] carta2 = btnNewButton.getIcon().toString().split("[_.'\']");
+				if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]))  {
+					cartaScar.setIcon(btnNewButton.getIcon());
+					FinestraCarteMano.getPanel().remove(btnNewButton);
+					//FinestraCarteMano.getPanel().repaint();
+					//FinestraCarteMano.getPanel().validate();
+				}
+				FinestraCarteMano.getPanel().repaint();
+				FinestraCarteMano.getPanel().validate();
+				
+//				else if(Arrays.asList(cartaScar.getIcon().toString().split("[_.'\']")).equals("")) {
+//					System.out.println("dentro secondo if");
+//					cartaScar.setIcon(btnNewButton.getIcon());
+//				}
+			}
+			
+		});
+		//System.out.println(btnNewButton.getIcon());
 
 		
 		Dimension d = new Dimension();
@@ -145,7 +222,7 @@ public class CartaController {
 		
 		//System.out.println(finCarteMano.getComponents().length);
 		//FinestraGioco.addFinCarteMano();
-		System.out.println(FinestraCarteMano.getPanel().getComponents().length);
+		//System.out.println(FinestraCarteMano.getPanel().getComponents().length);
 		int carteMano = FinestraCarteMano.getPanel().getComponents().length;
 		
 		
@@ -248,7 +325,10 @@ public class CartaController {
 	public void addCartaBotSx() {
 		
 		JButton btnNewButton = new JButton();
-		btnNewButton.setIcon(new ImageIcon("assets\\"+ generaCarta() + ".png"));
+		btnNewButton.setIcon(new ImageIcon("assets\\backSx.png"));
+		Carta carta = generaCarta();
+		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
+		//System.out.println(btnNewButton.getActionCommand());
 		
 		
 		Dimension d = new Dimension();
@@ -256,9 +336,61 @@ public class CartaController {
 		d.height = 74;
 		btnNewButton.setPreferredSize(d);
 		
+		int var = 0;
+		
+		int carteMano = FinestraBotSx.getPanel().getComponents().length;
+		
+		if(carteMano >= 5 && var < 111 ) {
+			pos -= 5;
+		}
+		
+		FinestraBotSx.getPanel().setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		
 		FinestraBotSx.getPanel().add(btnNewButton);
 		FinestraBotSx.getPanel().repaint();
 		FinestraBotSx.getPanel().validate();
+		var = FinestraBotSx.getPanel().getComponents()[0].getY();
+		
+		System.out.println(var);
+		
+	}
+	
+	public void addCartaBotSu() {
+		
+		JButton btnNewButton = new JButton();
+		btnNewButton.setIcon(new ImageIcon("assets\\backSu.png"));
+		Carta carta = generaCarta();
+		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
+		//System.out.println(btnNewButton.getActionCommand());
+		
+		
+		Dimension d = new Dimension();
+		d.width = 74;
+		d.height = 111;
+		btnNewButton.setPreferredSize(d);
+		
+		FinestraBotSu.getPanel().add(btnNewButton);
+		FinestraBotSu.getPanel().repaint();
+		FinestraBotSu.getPanel().validate();
+	}
+	
+	public void addCartaBotDx() {
+		
+		JButton btnNewButton = new JButton();
+		btnNewButton.setIcon(new ImageIcon("assets\\backDx.png"));
+		Carta carta = generaCarta();
+		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
+		//System.out.println(btnNewButton.getActionCommand());
+		
+		
+		Dimension d = new Dimension();
+		d.width = 111;
+		d.height = 74;
+		btnNewButton.setPreferredSize(d);
+		
+		FinestraBotDx.getPanel().add(btnNewButton);
+		FinestraBotDx.getPanel().repaint();
+		FinestraBotDx.getPanel().validate();
 	}
 
 	public int getNumCarteMano() {

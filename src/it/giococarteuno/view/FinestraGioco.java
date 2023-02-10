@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
+import it.giococarteuno.view.gioco.FinestraBotDx;
+import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
@@ -23,6 +25,7 @@ import java.awt.event.ActionEvent;
 public class FinestraGioco {
 
 	private static JFrame frame;
+	private static JButton cartaScartata;
 
 	/**
 	 * Launch the application.
@@ -88,9 +91,9 @@ public class FinestraGioco {
 		
 		
 		
-		JButton btnNewButton_1 = new JButton(new ImageIcon("assets\\"+ controller.generaCarta() + ".png"));
-		btnNewButton_1.setBounds(547, 322, 74, 111);
-		frame.getContentPane().add(btnNewButton_1);
+		cartaScartata = new JButton(new ImageIcon(""));
+		cartaScartata.setBounds(547, 322, 74, 111);
+		frame.getContentPane().add(cartaScartata);
 		
 //		JPanel panel = new JPanel();
 //		panel.setBounds(298, 524, 740, 146);
@@ -107,8 +110,21 @@ public class FinestraGioco {
 		
 		FinestraBotSx finBotSx = new FinestraBotSx();
 		frame.getContentPane().add(finBotSx.initialize());
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < 1; i++) {
 			ctrl.addCartaBotSx();
+		}
+		
+		FinestraBotSu finBotSu = new FinestraBotSu();
+		frame.getContentPane().add(finBotSu.initialize());
+		for(int i = 0; i < 7; i++) {
+			ctrl.addCartaBotSu();
+		}
+		
+		FinestraBotDx finBotDx = new FinestraBotDx();
+		frame.getContentPane().add(finBotDx.initialize());
+		for(int i = 0; i < 7; i++) {
+			
+			ctrl.addCartaBotDx();
 		}
 		
 		//sopra
@@ -116,13 +132,15 @@ public class FinestraGioco {
 //		panel_1.setBounds(298, 10, 740, 146);
 //		frame.getContentPane().add(panel_1);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBounds(10, 44, 146, 592);
-		frame.getContentPane().add(panel_1_1);
+		//fin 
+//		JPanel panel_1_1 = new JPanel();
+//		panel_1_1.setBounds(10, 44, 146, 592);
+//		frame.getContentPane().add(panel_1_1);
 		
-		JPanel panel_1_1_1 = new JPanel();
-		panel_1_1_1.setBounds(1194, 44, 146, 592);
-		frame.getContentPane().add(panel_1_1_1);
+		//fin dx
+//		JPanel panel_1_1_1 = new JPanel();
+//		panel_1_1_1.setBounds(1194, 44, 146, 592);
+//		frame.getContentPane().add(panel_1_1_1);
 		
 		
 		//mazzo da cui pescare
@@ -130,7 +148,7 @@ public class FinestraGioco {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CartaController ctrl = new CartaController();
-				ctrl.pescaCarta();
+				ctrl.addCartaBotSx();
 			}
 		});
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);
@@ -148,5 +166,13 @@ public class FinestraGioco {
 
 	public static void setFrame(JFrame frame) {
 		FinestraGioco.frame = frame;
+	}
+	
+	public static JButton getCartaScartata() {
+		return cartaScartata;
+	}
+
+	public static void setCartaScartata(JButton cartaScartata) {
+		FinestraGioco.cartaScartata = cartaScartata;
 	}
 }
