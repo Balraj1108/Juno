@@ -3,6 +3,8 @@ package it.giococarteuno.controller;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -28,6 +30,7 @@ import it.giococarteuno.model.Colore;
 import it.giococarteuno.model.Mazzo;
 import it.giococarteuno.model.Valore;
 import it.giococarteuno.view.FinestraGioco;
+import it.giococarteuno.view.gioco.ButtonLayout;
 import it.giococarteuno.view.gioco.FinestraBotDx;
 import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
@@ -36,10 +39,20 @@ import it.giococarteuno.view.gioco.FinestraCarteMano;
 public class CartaController {
 	
 	public static int var = 0;
+	public static int var1 = 0;
+	public static int var2 = 0;
+	public static int var3 = 0;
+	
 	public static int pos = 0;
+	public static int pos1 = 0;
+	public static int pos2 = 0;
+	public static int pos3 = 0;
+	
 	public static int meno = 10;
 	public static int cont = 0;
 	public static Carta carta;
+	
+	public static int test = 0;
 	
 	public void iniziaMano() {
 		for(int i=0; i < 7; i++) {
@@ -81,13 +94,7 @@ public class CartaController {
 		return mazzo;
 	}
 	
-	public static boolean isMouseWithinComponent(JButton c)
-	{
-	    Point mousePos = MouseInfo.getPointerInfo().getLocation();
-	    Rectangle bounds = c.getBounds();
-	    bounds.setLocation(c.getLocationOnScreen());
-	    return bounds.contains(mousePos);
-	}
+	
 	
 	public void addCartaMano() {
 		
@@ -134,11 +141,17 @@ public class CartaController {
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				//System.out.println(cartaScar.getIcon());
 				//System.out.println(btnNewButton.getIcon());
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+				String[] carta2 = btnNewButton.getIcon().toString().split("[_.\\\\]");
+				System.out.println(test + " fuori click mio");
 				if(cartaScar.getIcon().toString().equals("")) {
-					
+					test = 1;
 					//System.out.println("dentro primo if");
 					cartaScar.setIcon(btnNewButton.getIcon());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+					System.out.println(test + " dentro click mio");
 					//FinestraCarteMano.getPanel().repaint();
 					//FinestraCarteMano.getPanel().validate();
 				}
@@ -146,14 +159,37 @@ public class CartaController {
 				
 				//Arrays.asList(null);
 				
-				String[] carta1 = cartaScar.getIcon().toString().split("[_.'\']");
-				String[] carta2 = btnNewButton.getIcon().toString().split("[_.'\']");
-				if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]))  {
+//				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+//				String[] carta2 = btnNewButton.getIcon().toString().split("[_.\\\\]");
+				
+				
+				
+				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]))  {
+					test = 1;
 					cartaScar.setIcon(btnNewButton.getIcon());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+					System.out.println(test + " dentro click mio 2if");
 					//FinestraCarteMano.getPanel().repaint();
 					//FinestraCarteMano.getPanel().validate();
 				}
+				
+				int carteMano = FinestraCarteMano.getPanel().getComponents().length;
+				
+				
+				if(carteMano >= 9 && var > 90 && pos < 0 ) {
+					pos += 5;
+				}
+				if(carteMano <=9) {
+					pos = 0;
+				}
+				FinestraCarteMano.getPanel().setLayout(new FlowLayout(FlowLayout.CENTER, pos, 35));
+				if (carteMano >=9) {
+					var = FinestraCarteMano.getPanel().getComponents()[0].getX();
+				}
+				
+				
 				FinestraCarteMano.getPanel().repaint();
 				FinestraCarteMano.getPanel().validate();
 				
@@ -171,66 +207,17 @@ public class CartaController {
 		d.width = 74;
 		d.height = 111;
 		btnNewButton.setPreferredSize(d);
-//		btnNewButton.setAlignmentX(0.5f+pCarta);
-//		btnNewButton.setAlignmentY(1f);
-//		btnNewButton.setBounds(74*pCarta, 35, 74, 111);
-		
-//		JButton btnNewButton1 = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
-//		btnNewButton1.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//				Point p = btnNewButton1.getLocation();
-//				p.y -= 25;
-//				btnNewButton1.setLocation(p);
-//			}
-//			
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//				Point p = btnNewButton1.getLocation();
-//				p.y += 25;
-//				btnNewButton1.setLocation(p);
-//          }
-//		});
-//
-//		
-//		Dimension d1 = new Dimension();
-//		d1.width = 74;
-//		d1.height = 111;
-//		btnNewButton1.setPreferredSize(d1);
-		
-//		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
-//		btnNewButton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//				Point p = btnNewButton.getLocation();
-//				p.y -= 25;
-//				btnNewButton.setLocation(p);
-//			}
-//			
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//            	Point p = btnNewButton.getLocation();
-//				p.y += 25;
-//				btnNewButton.setLocation(p);
-//            }
-//            
-//		});
-//		btnNewButton.setBounds(pCarta, 35, 74, 111);
-		//FinestraGioco.addFinCarteMano();
-		
-		//btnNewButton.setBounds(pCarta, 35, 74, 111);
 		
 		//System.out.println(finCarteMano.getComponents().length);
 		//FinestraGioco.addFinCarteMano();
-		//System.out.println(FinestraCarteMano.getPanel().getComponents().length);
+		//System.out.println(FinestraCarteMano.getPanel().getComponents().length + " carte mano");
 		int carteMano = FinestraCarteMano.getPanel().getComponents().length;
 		
 		
 		
-		if(carteMano >= 5 && var < 74 ) {
+		if(carteMano >= 9 && var < 74 ) {
 			pos -= 5;
 		}
-		
 		
 		
 		FinestraCarteMano.getPanel().setLayout(new FlowLayout(FlowLayout.CENTER, pos, 35));
@@ -239,96 +226,70 @@ public class CartaController {
 		FinestraCarteMano.getPanel().add(btnNewButton);
 		
 		
-//		FinestraCarteMano.getPanel().add(FinestraCarteMano.jPane);
-//		JScrollPane jPane = new JScrollPane();
-//		FinestraCarteMano.getPanel().add(jPane);
-		//FinestraCarteMano.getPanel().add(btnNewButton1);
-		//numCarteMano++;
-		//FinestraGioco.getFrame().repaint();
-		//FinestraCarteMano.getPanel().validate();
-		//FinestraGioco.getFrame().repaint();
-		//FinestraGioco.addFinCarteMano();
-		//checkScroll();
 		FinestraCarteMano.getPanel().repaint();
 		FinestraCarteMano.getPanel().validate();
 		var = FinestraCarteMano.getPanel().getComponents()[0].getX();
-		//System.out.println(FinestraCarteMano.getPanel().getComponents()[0].getX());
-//		FinestraCarteMano.getPanel().add(FinestraCarteMano.jPane);
-//		JScrollPane jPane = new JScrollPane(FinestraCarteMano.getPanel());
-//		jPane.getViewport().addChangeListener(new ChangeListener() {
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				// TODO Auto-generated method stub
-//				if(jPane.getHorizontalScrollBar().isShowing()) {
-//					System.out.println("ciao");
-//		        }
-//			}
-//
-//		});
-		//System.out.println(FinestraCarteMano.contaCarte());
-		//System.out.println("ciao");
-		//System.out.println(FinestraCarteMano.getPanel().getComponents().length);
+
 		
 	}
 	
-//	public void checkScroll() {
-//		System.out.println("dentro check");
-//		FinestraCarteMano.jPane.getViewport().addChangeListener(new ChangeListener() {
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				// TODO Auto-generated method stub
-//				if(FinestraCarteMano.jPane.getHorizontalScrollBar().isShowing()) {
-//					System.out.println("ciao");
-//		        }
-//			}
-//
-//		});
-//	}
 	
 	public void pescaCarta() {
-//		System.out.println(numCarteMano);
 		
-			
 			addCartaMano();
-//		int pCarta = 74;
-//		JButton btnNewButton = new JButton(new ImageIcon("assets\\"+ generaCarta() + ".png"));
-//		btnNewButton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//				Point p = btnNewButton.getLocation();
-//				p.y -= 25;
-//				btnNewButton.setLocation(p);
-//			}
-//			
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//            	Point p = btnNewButton.getLocation();
-//				p.y += 25;
-//				btnNewButton.setLocation(p);
-//            }
-//            
-//		});
-//		btnNewButton.setBounds(pCarta*5, 35, 74, 111);
-//		//System.out.println(finCarteMano.getComponents().length);
-//		FinestraGioco.addFinCarteMano();
-//		FinestraCarteMano.getPanel().add(btnNewButton);
-//		numCarteMano++;
-//		FinestraCarteMano.getPanel().repaint();
-//		//FinestraGioco.addFinCarteMano();
-//		//System.out.println(FinestraCarteMano.contaCarte());
-			
-//		System.out.println(pos+"pos");
-//		System.out.println(numCarteMano);
-		//FinestraCarteMano.rep();
 	}
 	
 	public void addCartaBotSx() {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backSx.png"));
+		btnNewButton.setDisabledIcon(new ImageIcon("assets\\backSx.png"));
 		Carta carta = generaCarta();
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
-		//System.out.println(btnNewButton.getActionCommand());
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JButton cartaScar = FinestraGioco.getCartaScartata();
+				
+				if(cartaScar.getIcon().toString().equals("")) {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotSx.getPanel().remove(btnNewButton);
+				}
+				
+				
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
+				
+				
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotSx.getPanel().remove(btnNewButton);
+					
+				}
+				
+				int carteMano = FinestraBotSx.getPanel().getComponents().length;
+				
+				if(carteMano >= 7 && var1 > 90 && pos1 < 0 ) {
+					pos1 += 9;
+				}
+				if(carteMano <=7) {
+					pos1 = 0;
+				}
+				FinestraBotSx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos1));
+				if (carteMano >=7) {
+					var1 = FinestraBotSx.getPanel().getComponents()[0].getY();
+				}
+				
+				FinestraBotSx.getPanel().repaint();
+				FinestraBotSx.getPanel().validate();
+				
+
+			}
+			
+		});
 		
 		
 		Dimension d = new Dimension();
@@ -336,22 +297,39 @@ public class CartaController {
 		d.height = 74;
 		btnNewButton.setPreferredSize(d);
 		
-		int var = 0;
-		
+
 		int carteMano = FinestraBotSx.getPanel().getComponents().length;
 		
-		if(carteMano >= 5 && var < 111 ) {
-			pos -= 5;
+		
+		if(var1 < 74 ) {
+			pos1 -= 5;
 		}
 		
-		FinestraBotSx.getPanel().setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		
+		
+		if(carteMano > 7) {
+			
+			FinestraBotSx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos1));
+		}
+		
+		if(carteMano <= 7) {
+
+			FinestraBotSx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, 0));
+
+		}
+		
+		btnNewButton.setEnabled(false);
 		
 		FinestraBotSx.getPanel().add(btnNewButton);
+		
+		//btnNewButton.setEnabled(false);
+		
 		FinestraBotSx.getPanel().repaint();
 		FinestraBotSx.getPanel().validate();
-		var = FinestraBotSx.getPanel().getComponents()[0].getY();
 		
-		System.out.println(var);
+		
+		var1 = FinestraBotSx.getPanel().getComponents()[0].getY();
+		
 		
 	}
 	
@@ -363,15 +341,84 @@ public class CartaController {
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
 		//System.out.println(btnNewButton.getActionCommand());
 		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JButton cartaScar = FinestraGioco.getCartaScartata();
+				
+				if(cartaScar.getIcon().toString().equals("")) {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotSu.getPanel().remove(btnNewButton);
+				}
+				
+				
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
+				
+				
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotSu.getPanel().remove(btnNewButton);
+					
+				}
+				
+				int carteMano = FinestraBotSu.getPanel().getComponents().length;
+				
+				if(carteMano >= 9 && var2 > 90 && pos2 < 0 ) {
+					pos2 += 5;
+				}
+				if(carteMano <=9) {
+					pos2 = 0;
+				}
+				FinestraBotSu.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.HORIZONTAL, ButtonLayout.Anchor.CENTER, pos2));
+				if (carteMano >=9) {
+					var2 = FinestraBotSu.getPanel().getComponents()[0].getX();
+				}
+				
+				FinestraBotSu.getPanel().repaint();
+				FinestraBotSu.getPanel().validate();
+				
+
+			}
+			
+		});
+		
 		
 		Dimension d = new Dimension();
 		d.width = 74;
 		d.height = 111;
 		btnNewButton.setPreferredSize(d);
 		
+		int carteMano = FinestraBotSu.getPanel().getComponents().length;
+		
+		
+		if(var2 < 74 ) {
+			pos2 -= 5;
+		}
+		
+		
+		
+		if(carteMano > 7) {
+			
+			FinestraBotSu.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.HORIZONTAL, ButtonLayout.Anchor.CENTER, pos2));
+		}
+		
+		if(carteMano <= 7) {
+
+			FinestraBotSu.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.HORIZONTAL, ButtonLayout.Anchor.CENTER, 0));
+
+		}
+		
+		
+		
+		
 		FinestraBotSu.getPanel().add(btnNewButton);
 		FinestraBotSu.getPanel().repaint();
 		FinestraBotSu.getPanel().validate();
+		
+		var2 = FinestraBotSu.getPanel().getComponents()[0].getX();
 	}
 	
 	public void addCartaBotDx() {
@@ -382,16 +429,91 @@ public class CartaController {
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
 		//System.out.println(btnNewButton.getActionCommand());
 		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JButton cartaScar = FinestraGioco.getCartaScartata();
+				
+				if(cartaScar.getIcon().toString().equals("")) {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotDx.getPanel().remove(btnNewButton);
+				}
+				
+				
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
+				
+				
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+					
+					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+					FinestraBotDx.getPanel().remove(btnNewButton);
+					
+				}
+				
+				int carteMano = FinestraBotDx.getPanel().getComponents().length;
+				
+				if(carteMano >= 7 && var3 > 90 && pos3 < 0 ) {
+					pos3 += 9;
+				}
+				if(carteMano <=7) {
+					pos3 = 0;
+				}
+				FinestraBotDx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos3));
+				if (carteMano >=7) {
+					var3 = FinestraBotDx.getPanel().getComponents()[0].getY();
+				}
+				
+				FinestraBotDx.getPanel().repaint();
+				FinestraBotDx.getPanel().validate();
+				
+
+			}
+			
+		});
+		
 		
 		Dimension d = new Dimension();
 		d.width = 111;
 		d.height = 74;
 		btnNewButton.setPreferredSize(d);
 		
+		int carteMano = FinestraBotDx.getPanel().getComponents().length;
+		
+		
+		if(var3 < 74 ) {
+			pos3 -= 5;
+		}
+		
+		
+		
+		if(carteMano > 7) {
+			
+			FinestraBotDx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos3));
+		}
+		
+		if(carteMano <= 7) {
+
+			FinestraBotDx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, 0));
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		FinestraBotDx.getPanel().add(btnNewButton);
 		FinestraBotDx.getPanel().repaint();
 		FinestraBotDx.getPanel().validate();
+		
+		var3 = FinestraBotDx.getPanel().getComponents()[0].getY();
 	}
+	
+	
 
 	public int getNumCarteMano() {
 		return var;

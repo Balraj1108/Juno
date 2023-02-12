@@ -110,7 +110,7 @@ public class FinestraGioco {
 		
 		FinestraBotSx finBotSx = new FinestraBotSx();
 		frame.getContentPane().add(finBotSx.initialize());
-		for(int i = 0; i < 1; i++) {
+		for(int i = 0; i < 7; i++) {
 			ctrl.addCartaBotSx();
 		}
 		
@@ -127,20 +127,7 @@ public class FinestraGioco {
 			ctrl.addCartaBotDx();
 		}
 		
-		//sopra
-//		JPanel panel_1 = new JPanel();
-//		panel_1.setBounds(298, 10, 740, 146);
-//		frame.getContentPane().add(panel_1);
 		
-		//fin 
-//		JPanel panel_1_1 = new JPanel();
-//		panel_1_1.setBounds(10, 44, 146, 592);
-//		frame.getContentPane().add(panel_1_1);
-		
-		//fin dx
-//		JPanel panel_1_1_1 = new JPanel();
-//		panel_1_1_1.setBounds(1194, 44, 146, 592);
-//		frame.getContentPane().add(panel_1_1_1);
 		
 		
 		//mazzo da cui pescare
@@ -148,7 +135,7 @@ public class FinestraGioco {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CartaController ctrl = new CartaController();
-				ctrl.addCartaBotSx();
+				ctrl.pescaCarta();
 			}
 		});
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);

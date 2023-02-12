@@ -16,7 +16,7 @@ public class FinestraBotSu extends JPanel {
 	}
 	
 	public Component initialize() {
-		setLayout(null);
+		//setLayout(null);
 		panel = new JPanel();
 		panel.setBounds(298, 10, 740, 146);
 		add(panel);
