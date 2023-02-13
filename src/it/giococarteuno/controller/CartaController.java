@@ -1,5 +1,6 @@
 package it.giococarteuno.controller;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Point;
@@ -27,7 +28,6 @@ import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 public class CartaController {
 	
-	TurnoController turnCtrl = new TurnoController();
 	
 	
 	public static int var = 0;
@@ -40,14 +40,23 @@ public class CartaController {
 	public static int pos2 = 0;
 	public static int pos3 = 0;
 	
+	public static int test = 0;
 	public static int contTur = 0;
 	public static int contTurnSu = 0;
 	
 	public static int meno = 10;
 	public static int cont = 0;
+	public static int ranInt = 76;
 	public static Carta carta;
+	public static Mazzo mazzo;
 	
-	public static int test = 0;
+	
+	
+	public CartaController() {
+		generaMazzo();
+		// TODO Auto-generated constructor stub
+		
+	}
 	
 	public void iniziaMano() {
 		for(int i=0; i < 7; i++) {
@@ -59,19 +68,20 @@ public class CartaController {
 //	Random rand = new Random();
 //	int randomNum = rand.nextInt(4);
 	
-	public Carta generaCarta() {
-		//System.out.println(cont);
-		cont++;
-		Random rand = new Random();
-		int randomNum = rand.nextInt(4);
-		//System.out.println(randomNum);
-		return generaMazzo().getMazzo().get(randomNum);
-		
-	}
-
-	
 	public Mazzo generaMazzo() {
-		Mazzo mazzo = new Mazzo();
+		//Mazzo mazzo = new Mazzo();
+		System.out.println("dentro gen");
+		mazzo = new Mazzo();
+//		for (Valore v : Valore.values()) {
+//			System.out.println(v);
+//		}
+		for(int j = 0; j < 2; j++) {
+			for(int i = 1; i < Valore.values().length-5; i++) {
+				for(int k = 0; k < Colore.values().length-1; k++) {
+					mazzo.getMazzo().add(new Carta(Colore.values()[k], Valore.values()[i]));
+				}
+			}
+		}
 		mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.Zero));
 		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.Zero));
 		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.Zero));
@@ -86,7 +96,25 @@ public class CartaController {
 //				
 //			mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.Zero));}
 //		}
+		System.out.println(mazzo.getMazzo().size());
 		return mazzo;
+	}
+	
+	public static Carta generaCarta() {
+		//System.out.println(cont);
+		Carta car = new Carta();
+		cont++;
+		
+		Random rand = new Random();
+		int randomNum = rand.nextInt(ranInt);
+		//System.out.println(randomNum);
+		//System.out.println(Valore.values()[0]);
+		car = mazzo.getMazzo().get(randomNum);
+		ranInt--;
+		mazzo.getMazzo().remove(car);
+		System.out.println(mazzo.getMazzo().size() + "maz");
+		return car;
+		
 	}
 	
 	
@@ -98,7 +126,7 @@ public class CartaController {
 		JButton btnNewButton = new JButton();
 		carta = generaCarta();
 		btnNewButton.setIcon(new ImageIcon("assets\\"+ carta.getValore() + "_" + carta.getColore()  + ".png"));
-		
+		btnNewButton.setDisabledIcon(new ImageIcon("assets\\"+ carta.getValore() + "_" + carta.getColore()  + ".png"));
 		
 		
 		
@@ -140,15 +168,20 @@ public class CartaController {
 				//System.out.println(btnNewButton.getIcon());
 				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
 				String[] carta2 = btnNewButton.getIcon().toString().split("[_.\\\\]");
-				System.out.println(test + " fuori click mio");
+				//System.out.println(btnNewButton.getIcon());
+				//System.out.println(test + " fuori click mio");
 				if(cartaScar.getIcon().toString().equals("")) {
+					FinestraGioco.btnNewButton_1_1.setEnabled(false);
+					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+							c.setEnabled(false);
+					}
 					test = 1;
 					//System.out.println("dentro primo if");
 					cartaScar.setIcon(btnNewButton.getIcon());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
 					TurnoController turnoCtrl = new TurnoController();
 					turnoCtrl.turnoBotSx();
-					System.out.println(test + " dentro click mio");
+					//System.out.println(test + " dentro click mio");
 					//FinestraCarteMano.getPanel().repaint();
 					//FinestraCarteMano.getPanel().validate();
 				}
@@ -162,12 +195,16 @@ public class CartaController {
 				
 				
 				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]))  {
+					FinestraGioco.btnNewButton_1_1.setEnabled(false);
+					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+						c.setEnabled(false);
+					}
 					test = 1;
 					cartaScar.setIcon(btnNewButton.getIcon());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
 					TurnoController turnoCtrl = new TurnoController();
 					turnoCtrl.turnoBotSx();
-					System.out.println(test + " dentro click mio 2if");
+					//System.out.println(test + " dentro click mio 2if");
 					//FinestraCarteMano.getPanel().repaint();
 					//FinestraCarteMano.getPanel().validate();
 				}
@@ -218,7 +255,7 @@ public class CartaController {
 		
 		
 		FinestraCarteMano.getPanel().setLayout(new FlowLayout(FlowLayout.CENTER, pos, 35));
-		
+		//btnNewButton.setEnabled(false);
 		//System.out.println(FinestraCarteMano.getPanel().getLayout().toString());
 		FinestraCarteMano.getPanel().add(btnNewButton);
 		
@@ -236,7 +273,7 @@ public class CartaController {
 			addCartaMano();
 	}
 	
-	public void addCartaBotSx() {
+	public static void addCartaBotSx() {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backSx.png"));
@@ -253,7 +290,8 @@ public class CartaController {
 				
 				if(cartaScar.getIcon().toString().equals("")) {
 					contTur = 1;
-					
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSx.getPanel().remove(btnNewButton);
 				}
@@ -263,6 +301,8 @@ public class CartaController {
 				
 				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
 					contTur = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSx.getPanel().remove(btnNewButton);
 					
@@ -331,7 +371,7 @@ public class CartaController {
 		
 	}
 	
-	public void addCartaBotSu() {
+	public static void addCartaBotSu() {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backSu.png"));
@@ -347,6 +387,8 @@ public class CartaController {
 				
 				if(cartaScar.getIcon().toString().equals("")) {
 					contTurnSu = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDx();
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSu.getPanel().remove(btnNewButton);
 				}
@@ -358,6 +400,8 @@ public class CartaController {
 				
 				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
 					contTurnSu = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDx();
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSu.getPanel().remove(btnNewButton);
 					
@@ -420,7 +464,7 @@ public class CartaController {
 		var2 = FinestraBotSu.getPanel().getComponents()[0].getX();
 	}
 	
-	public void addCartaBotDx() {
+	public static void addCartaBotDx() {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backDx.png"));

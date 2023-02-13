@@ -1,6 +1,7 @@
 package it.giococarteuno.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
+import it.giococarteuno.controller.TurnoController;
 import it.giococarteuno.view.gioco.FinestraBotDx;
 import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
@@ -26,6 +28,7 @@ public class FinestraGioco {
 
 	private static JFrame frame;
 	private static JButton cartaScartata;
+	public static JButton btnNewButton_1_1;
 
 	/**
 	 * Launch the application.
@@ -83,7 +86,7 @@ public class FinestraGioco {
 		//frame.getContentPane().setBackground(Color.blue);
 		
 		//frame.getContentPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
-		CartaController controller = new CartaController();
+		//CartaController controller = new CartaController();
 		//carico quello che voglio io
 //		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
 //		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
@@ -131,11 +134,19 @@ public class FinestraGioco {
 		
 		
 		//mazzo da cui pescare
-		JButton btnNewButton_1_1 = new JButton(new ImageIcon("assets\\backMazzo.png"));
+		btnNewButton_1_1 = new JButton(new ImageIcon("assets\\backMazzo.png"));
+		btnNewButton_1_1.setEnabled(false);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CartaController ctrl = new CartaController();
+				//CartaController ctrl = new CartaController();
 				ctrl.pescaCarta();
+				for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+						c.setEnabled(false);
+				}
+				btnNewButton_1_1.setEnabled(false);
+				CartaController.test = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSx();
 			}
 		});
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);
