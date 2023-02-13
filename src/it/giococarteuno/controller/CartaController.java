@@ -1,28 +1,16 @@
 package it.giococarteuno.controller;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
-import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.model.Carta;
@@ -36,7 +24,11 @@ import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
+
 public class CartaController {
+	
+	TurnoController turnCtrl = new TurnoController();
+	
 	
 	public static int var = 0;
 	public static int var1 = 0;
@@ -47,6 +39,9 @@ public class CartaController {
 	public static int pos1 = 0;
 	public static int pos2 = 0;
 	public static int pos3 = 0;
+	
+	public static int contTur = 0;
+	public static int contTurnSu = 0;
 	
 	public static int meno = 10;
 	public static int cont = 0;
@@ -93,6 +88,8 @@ public class CartaController {
 //		}
 		return mazzo;
 	}
+	
+	
 	
 	
 	
@@ -251,20 +248,21 @@ public class CartaController {
 			public void actionPerformed(ActionEvent e) {
 				
 				JButton cartaScar = FinestraGioco.getCartaScartata();
+				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
+				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				if(cartaScar.getIcon().toString().equals("")) {
+					contTur = 1;
 					
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSx.getPanel().remove(btnNewButton);
 				}
 				
 				
-				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
-				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				
-				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
-					
+				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+					contTur = 1;
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSx.getPanel().remove(btnNewButton);
 					
@@ -337,6 +335,7 @@ public class CartaController {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backSu.png"));
+		btnNewButton.setDisabledIcon(new ImageIcon("assets\\backSu.png"));
 		Carta carta = generaCarta();
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
 		//System.out.println(btnNewButton.getActionCommand());
@@ -347,7 +346,7 @@ public class CartaController {
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
-					
+					contTurnSu = 1;
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSu.getPanel().remove(btnNewButton);
 				}
@@ -358,7 +357,7 @@ public class CartaController {
 				
 				
 				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
-					
+					contTurnSu = 1;
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotSu.getPanel().remove(btnNewButton);
 					
@@ -412,7 +411,7 @@ public class CartaController {
 		}
 		
 		
-		
+		btnNewButton.setEnabled(false);
 		
 		FinestraBotSu.getPanel().add(btnNewButton);
 		FinestraBotSu.getPanel().repaint();
@@ -425,6 +424,7 @@ public class CartaController {
 		
 		JButton btnNewButton = new JButton();
 		btnNewButton.setIcon(new ImageIcon("assets\\backDx.png"));
+		btnNewButton.setDisabledIcon(new ImageIcon("assets\\backDx.png"));
 		Carta carta = generaCarta();
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
 		//System.out.println(btnNewButton.getActionCommand());
@@ -503,7 +503,7 @@ public class CartaController {
 		
 		
 		
-		
+		btnNewButton.setEnabled(false);
 		
 		
 		FinestraBotDx.getPanel().add(btnNewButton);
@@ -513,15 +513,6 @@ public class CartaController {
 		var3 = FinestraBotDx.getPanel().getComponents()[0].getY();
 	}
 	
-	
-
-	public int getNumCarteMano() {
-		return var;
-	}
-
-	public void setNumCarteMano(int var) {
-		this.var = var;
-	}
 	
 	
 

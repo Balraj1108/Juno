@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
+import it.giococarteuno.view.gioco.FinestraBotDx;
+import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 
 public class TurnoController {
@@ -40,5 +42,43 @@ public class TurnoController {
 //		System.out.println( "Wait is over!");
 //		//timer.cancel();
 //		, 10000;
+	}
+	
+	public void turnoBotSu() {
+		Timer timer = new Timer(3000, new  ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CartaController.contTur == 1) {
+					JButton cartaBotSu = new JButton();
+					cartaBotSu = (JButton) FinestraBotSu.getPanel().getComponents()[0];
+					cartaBotSu.setEnabled(true);
+					cartaBotSu.doClick();
+				}
+				CartaController.contTur++;
+				
+			}
+			
+		});
+		timer.start();
+	}
+	
+	public void turnoBotDx() {
+		Timer timer = new Timer(3000, new  ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CartaController.contTurnSu == 1) {
+					JButton cartaBotDx = new JButton();
+					cartaBotDx = (JButton) FinestraBotDx.getPanel().getComponents()[0];
+					cartaBotDx.setEnabled(true);
+					cartaBotDx.doClick();
+				}
+				CartaController.contTurnSu++;
+				
+			}
+			
+		});
+		timer.start();
 	}
 }
