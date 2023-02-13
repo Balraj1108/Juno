@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Point;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,6 +13,10 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.model.Carta;
@@ -26,7 +31,7 @@ import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 
-public class CartaController {
+public class CartaController extends JPanel {
 	
 	
 	
@@ -53,7 +58,7 @@ public class CartaController {
 	
 	
 	public CartaController() {
-		generaMazzo();
+		//generaMazzo();
 		// TODO Auto-generated constructor stub
 		
 	}
@@ -68,7 +73,7 @@ public class CartaController {
 //	Random rand = new Random();
 //	int randomNum = rand.nextInt(4);
 	
-	public Mazzo generaMazzo() {
+	public static Mazzo generaMazzo() {
 		//Mazzo mazzo = new Mazzo();
 		System.out.println("dentro gen");
 		mazzo = new Mazzo();
@@ -118,10 +123,22 @@ public class CartaController {
 	}
 	
 	
+	private static void showSuccess() {
+        JOptionPane.showMessageDialog(FinestraGioco.getFrame(), "Complimenti Hai Vinto!!!", "Successo", JOptionPane.CLOSED_OPTION);
+        
+    }
+	
+	private static void showError() {
+        JOptionPane.showMessageDialog(FinestraGioco.getFrame(), "Hai Perso :(", "Perso", JOptionPane.ERROR_MESSAGE);
+       
+    }
 	
 	
 	
-	public void addCartaMano() {
+	
+	
+	
+	public static void addCartaMano() {
 		
 		JButton btnNewButton = new JButton();
 		carta = generaCarta();
@@ -223,7 +240,10 @@ public class CartaController {
 					var = FinestraCarteMano.getPanel().getComponents()[0].getX();
 				}
 				
-				
+				if (FinestraCarteMano.getPanel().getComponents().length == 0) {
+					FinestraGioco.btnNewButton.doClick();
+					showSuccess();
+				}
 				FinestraCarteMano.getPanel().repaint();
 				FinestraCarteMano.getPanel().validate();
 				
@@ -246,6 +266,7 @@ public class CartaController {
 		//FinestraGioco.addFinCarteMano();
 		//System.out.println(FinestraCarteMano.getPanel().getComponents().length + " carte mano");
 		int carteMano = FinestraCarteMano.getPanel().getComponents().length;
+		//System.out.println(carteMano + " carte");
 		
 		
 		
@@ -268,7 +289,7 @@ public class CartaController {
 	}
 	
 	
-	public void pescaCarta() {
+	public static void pescaCarta() {
 		
 			addCartaMano();
 	}
@@ -319,6 +340,11 @@ public class CartaController {
 				FinestraBotSx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos1));
 				if (carteMano >=7) {
 					var1 = FinestraBotSx.getPanel().getComponents()[0].getY();
+				}
+				
+				if (FinestraBotSx.getPanel().getComponents().length == 0) {
+					FinestraGioco.btnNewButton.doClick();
+					showError();
 				}
 				
 				FinestraBotSx.getPanel().repaint();
@@ -419,6 +445,10 @@ public class CartaController {
 				if (carteMano >=9) {
 					var2 = FinestraBotSu.getPanel().getComponents()[0].getX();
 				}
+				if (FinestraBotSu.getPanel().getComponents().length == 0) {
+					FinestraGioco.btnNewButton.doClick();
+					showError();
+				}
 				
 				FinestraBotSu.getPanel().repaint();
 				FinestraBotSu.getPanel().validate();
@@ -507,6 +537,10 @@ public class CartaController {
 				FinestraBotDx.getPanel().setLayout(new ButtonLayout(ButtonLayout.Alignment.VERTICAL, ButtonLayout.Anchor.CENTER, pos3));
 				if (carteMano >=7) {
 					var3 = FinestraBotDx.getPanel().getComponents()[0].getY();
+				}
+				if (FinestraBotDx.getPanel().getComponents().length == 0) {
+					FinestraGioco.btnNewButton.doClick();
+					showError();
 				}
 				
 				FinestraBotDx.getPanel().repaint();

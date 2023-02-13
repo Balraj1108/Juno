@@ -95,4 +95,14 @@ public class FinestraBenvenuto extends JPanel {
 		panel.setVisible(true);
 	}
 
+	public static JPanel getPanel() {
+		return panel;
+	}
+
+	public static void setPanel(JPanel panel) {
+		FinestraBenvenuto.panel = panel;
+	}
+	
+	
+
 }

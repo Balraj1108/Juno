@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Window;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
 import it.giococarteuno.controller.TurnoController;
+import it.giococarteuno.model.Utente;
 import it.giococarteuno.view.gioco.FinestraBotDx;
 import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
@@ -20,7 +22,10 @@ import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -29,6 +34,8 @@ public class FinestraGioco {
 	private static JFrame frame;
 	private static JButton cartaScartata;
 	public static JButton btnNewButton_1_1;
+	private static  Utente utenteLog;
+	public static JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -105,29 +112,30 @@ public class FinestraGioco {
 		FinestraCarteMano p = new FinestraCarteMano();
 		frame.getContentPane().add(p.initialize());
 		//System.out.println("dentroFinestraGioco");
-		CartaController ctrl = new CartaController();
+		//CartaController ctrl = new CartaController();
+		CartaController.generaMazzo();
 		for(int i = 0; i < 7; i++) {
-			ctrl.pescaCarta();
+			CartaController.pescaCarta();
 		}
 		
 		
 		FinestraBotSx finBotSx = new FinestraBotSx();
 		frame.getContentPane().add(finBotSx.initialize());
 		for(int i = 0; i < 7; i++) {
-			ctrl.addCartaBotSx();
+			CartaController.addCartaBotSx();
 		}
 		
 		FinestraBotSu finBotSu = new FinestraBotSu();
 		frame.getContentPane().add(finBotSu.initialize());
 		for(int i = 0; i < 7; i++) {
-			ctrl.addCartaBotSu();
+			CartaController.addCartaBotSu();
 		}
 		
 		FinestraBotDx finBotDx = new FinestraBotDx();
 		frame.getContentPane().add(finBotDx.initialize());
 		for(int i = 0; i < 7; i++) {
 			
-			ctrl.addCartaBotDx();
+			CartaController.addCartaBotDx();
 		}
 		
 		
@@ -139,7 +147,7 @@ public class FinestraGioco {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//CartaController ctrl = new CartaController();
-				ctrl.pescaCarta();
+				CartaController.pescaCarta();
 				for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 						c.setEnabled(false);
 				}
@@ -152,8 +160,35 @@ public class FinestraGioco {
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
+		System.out.println(MainFinestraIniziale.getStringaNickname());
+		
+		btnNewButton = new JButton("Esci");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CartaController.ranInt = 76;
+				JComponent comp = (JComponent) e.getSource();
+				Window win = SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+				
+				MainFinestraIniziale window = new MainFinestraIniziale();
+				window.getFrame().setVisible(true);
+				
+				MainFinestraIniziale.addBenvenuto();
+				
+				//FinestraBenvenuto fBen = new FinestraBenvenuto();
+				//fBen.getPanel().setVisible(true);
+				//frame.getContentPane().add(p.initialize());
+				//window.getContentPane().add(fBen);
+				//MainFinestraIniziale.getPanel().setVisible(true);
+				
+				
+			}
+		});
+		btnNewButton.setBounds(610, 277, 89, 23);
+		frame.getContentPane().add(btnNewButton);
 		
 		
+		MainFinestraIniziale.setStringaNickname(utenteLog);
 		
 	}
 
@@ -172,5 +207,13 @@ public class FinestraGioco {
 
 	public static void setCartaScartata(JButton cartaScartata) {
 		FinestraGioco.cartaScartata = cartaScartata;
+	}
+	
+	public static Utente getUtenteLog() {
+		return utenteLog;
+	}
+
+	public static void setUtenteLog(Utente utenteLog) {
+		FinestraGioco.utenteLog = utenteLog;
 	}
 }

@@ -15,6 +15,7 @@ import it.giococarteuno.view.FinestraRegistrazione;
 import it.giococarteuno.view.FinestraModificaProfilo;
 import it.giococarteuno.view.FinestraProfilo;
 import it.giococarteuno.view.FinestraBenvenuto;
+import it.giococarteuno.view.FinestraGioco;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -132,6 +133,8 @@ public class MainFinestraIniziale extends JFrame {
 					
 				}
 				
+				FinestraGioco.setUtenteLog(stringaNickname);
+				
 				System.out.println(stringaNickname + "variabile");
 				
 //				lblNewLabel.setVisible(false);
@@ -218,12 +221,12 @@ public class MainFinestraIniziale extends JFrame {
 		MainFinestraIniziale.frame = frame;
 	}
 
-	public JPanel getPanel() {
+	public static JPanel getPanel() {
 		return panel;
 	}
 
 	public void setPanel(JPanel panel) {
-		this.panel = panel;
+		MainFinestraIniziale.panel = panel;
 	}
 	
 	

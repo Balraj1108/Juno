@@ -68,6 +68,8 @@ public class FinestraModificaProfilo extends JPanel {
 					
 					MainFinestraIniziale.getStringaNickname().setNickname(nicknameText);
 					
+					FinestraGioco.getUtenteLog().setNickname(nicknameText);
+					
 					
 //					Profilo fProfilo = new Profilo();
 //					fProfilo.getFrame().setVisible(true);

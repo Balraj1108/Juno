@@ -47,7 +47,7 @@ public class TurnoController {
 //							System.out.println(string);
 //						}
 						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1])) {
-							System.out.println("for sx");
+							//System.out.println("for sx");
 							but.setEnabled(true);
 							but.doClick();
 							cartaTro = false;
