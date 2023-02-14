@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
 import it.giococarteuno.controller.TurnoController;
+import it.giococarteuno.model.Carta;
+import it.giococarteuno.model.Colore;
 import it.giococarteuno.model.Utente;
 import it.giococarteuno.view.gioco.FinestraBotDx;
 import it.giococarteuno.view.gioco.FinestraBotSu;
@@ -28,6 +30,8 @@ import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridLayout;
 
 public class FinestraGioco {
 
@@ -36,6 +40,8 @@ public class FinestraGioco {
 	public static JButton btnNewButton_1_1;
 	private static  Utente utenteLog;
 	public static JButton btnNewButton;
+	public static Carta cartaS;
+	public static JPanel panelScegliColore;
 
 	/**
 	 * Launch the application.
@@ -98,11 +104,14 @@ public class FinestraGioco {
 //		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
 //		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
 //		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
+		CartaController.generaMazzo();
+		cartaS = CartaController.generaCarta();
 		
-		
-		
-		cartaScartata = new JButton(new ImageIcon(""));
+		cartaScartata = new JButton(new ImageIcon("assets\\"+ cartaS.getValore() + "_" + cartaS.getColore()  + ".png"));
 		cartaScartata.setBounds(547, 322, 74, 111);
+		
+		
+		cartaScartata.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(cartaS.getColore()+""),4));
 		frame.getContentPane().add(cartaScartata);
 		
 //		JPanel panel = new JPanel();
@@ -113,7 +122,7 @@ public class FinestraGioco {
 		frame.getContentPane().add(p.initialize());
 		//System.out.println("dentroFinestraGioco");
 		//CartaController ctrl = new CartaController();
-		CartaController.generaMazzo();
+		//CartaController.generaMazzo();
 		for(int i = 0; i < 7; i++) {
 			CartaController.pescaCarta();
 		}
@@ -143,7 +152,7 @@ public class FinestraGioco {
 		
 		//mazzo da cui pescare
 		btnNewButton_1_1 = new JButton(new ImageIcon("assets\\backMazzo.png"));
-		btnNewButton_1_1.setEnabled(false);
+		//btnNewButton_1_1.setEnabled(false);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//CartaController ctrl = new CartaController();
@@ -165,7 +174,7 @@ public class FinestraGioco {
 		btnNewButton = new JButton("Esci");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CartaController.ranInt = 76;
+				CartaController.ranInt = 96;
 				JComponent comp = (JComponent) e.getSource();
 				Window win = SwingUtilities.getWindowAncestor(comp);
 				win.dispose();
@@ -186,6 +195,62 @@ public class FinestraGioco {
 		});
 		btnNewButton.setBounds(610, 277, 89, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		
+		
+		panelScegliColore = new JPanel();
+		panelScegliColore.setBounds(812, 244, 150, 150);
+		frame.getContentPane().add(panelScegliColore);
+		panelScegliColore.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		JButton btnNewButton_1 = new JButton("Blu");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized (btnNewButton_1) {
+					btnNewButton_1.notify();
+				}
+				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Blu.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
+				panelScegliColore.setVisible(false);
+			}
+		});
+		panelScegliColore.add(btnNewButton_1);
+		
+		JButton btnNewButton_3 = new JButton("Rosso");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Rosso.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.red),4));
+				panelScegliColore.setVisible(false);
+				
+			}
+		});
+		panelScegliColore.add(btnNewButton_3);
+		
+		JButton btnNewButton_2 = new JButton("Verde");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Verde.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.green),4));
+				panelScegliColore.setVisible(false);
+				
+			}
+		});
+		panelScegliColore.add(btnNewButton_2);
+		
+		JButton btnNewButton_4 = new JButton("Giallo");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Giallo.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.yellow),4));
+				panelScegliColore.setVisible(false);
+			}
+		});
+		panelScegliColore.add(btnNewButton_4);
+		
+		panelScegliColore.setVisible(false);
+		
+		
 		
 		
 		MainFinestraIniziale.setStringaNickname(utenteLog);

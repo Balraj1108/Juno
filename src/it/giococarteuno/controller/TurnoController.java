@@ -193,12 +193,16 @@ public class TurnoController {
 					if(cartaTro == true) {
 						CartaController.test = 1;
 						CartaController.addCartaBotDx();
+						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+							c.setEnabled(true);
+						}
+						FinestraGioco.btnNewButton_1_1.setEnabled(true);
 					}
 					
-					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
-						c.setEnabled(true);
-					}
-					FinestraGioco.btnNewButton_1_1.setEnabled(true);
+//					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+//						c.setEnabled(true);
+//					}
+//					FinestraGioco.btnNewButton_1_1.setEnabled(true);
 					CartaController.contTurnSu++;
 				}
 				if(CartaController.contTurnSu > 1) {
