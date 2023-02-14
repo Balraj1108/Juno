@@ -80,7 +80,10 @@ public class FinestraBenvenuto extends JPanel {
 		JButton btnNewButton_1_1 = new JButton("Esci");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFinestraIniziale.showMain();
+				
+				//MainFinestraIniziale.showMain();
+				
+				MainFinestraIniziale.getPanel().setVisible(true);
 				panel.setVisible(false);
 			}
 		});

@@ -54,7 +54,7 @@ public class MainFinestraIniziale extends JFrame {
 	 * Create the application.
 	 */
 	public MainFinestraIniziale() {
-		
+		System.out.println("ciao");
 		initialize();
 	}
 	
@@ -66,6 +66,12 @@ public class MainFinestraIniziale extends JFrame {
 	public static  void showMain() {
 		
 		panel.setVisible(true);
+		
+	}
+	
+	public static  void closeMain() {
+		
+		panel.setVisible(false);
 		
 	}
 	
@@ -95,7 +101,7 @@ public class MainFinestraIniziale extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame("Junoo");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -179,10 +179,19 @@ public class FinestraGioco {
 				Window win = SwingUtilities.getWindowAncestor(comp);
 				win.dispose();
 				
-				MainFinestraIniziale window = new MainFinestraIniziale();
-				window.getFrame().setVisible(true);
+
+				MainFinestraIniziale.getFrame().setVisible(true);
+//				MainFinestraIniziale.getPanel().validate();
+//				MainFinestraIniziale.getPanel().repaint();
+				FinestraBenvenuto.getPanel().setVisible(true);
+//				MainFinestraIniziale.getPanel().setVisible(true);
+
+//				MainFinestraIniziale.getFrame().revalidate();;
+//				MainFinestraIniziale.getFrame().repaint();
+//				MainFinestraIniziale.getPanel().revalidate();
+//				MainFinestraIniziale.getPanel().repaint();
+
 				
-				MainFinestraIniziale.addBenvenuto();
 				
 				//FinestraBenvenuto fBen = new FinestraBenvenuto();
 				//fBen.getPanel().setVisible(true);

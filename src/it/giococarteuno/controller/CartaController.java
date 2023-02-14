@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -56,6 +57,7 @@ public class CartaController extends JPanel {
 	public static int ranInt = 96;
 	public static Carta carta;
 	public static Mazzo mazzo;
+	public static Mazzo mazzoCarteScartate = new Mazzo();
 	
 	
 	
@@ -141,15 +143,24 @@ public class CartaController extends JPanel {
 		//System.out.println(cont);
 		Carta car = new Carta();
 		cont++;
-		
+		//System.out.println(mazzo.getMazzo().size() + "maz");
+		//System.out.println(ranInt + "ranint");
 		Random rand = new Random();
-		int randomNum = rand.nextInt(ranInt);
+		int sizeMazzo = mazzo.getMazzo().size();
+		int randomNum = rand.nextInt(sizeMazzo);
 		//System.out.println(randomNum);
 		//System.out.println(Valore.values()[0]);
 		car = mazzo.getMazzo().get(randomNum);
-		ranInt--;
+		//ranInt--;
 		mazzo.getMazzo().remove(car);
+//		mazzoCarteScartate = new Mazzo();
+//		mazzoCarteScartate.getMazzo().add(car);
 		System.out.println(mazzo.getMazzo().size() + "maz");
+		if(mazzo.getMazzo().size() == 0) {
+			mazzoCarteScartate.getMazzo().stream().forEach(cart -> mazzo.getMazzo().add(cart));
+			Collections.shuffle(mazzo.getMazzo());
+			mazzoCarteScartate.getMazzo().clear();
+		}
 		return car;
 		
 	}
@@ -260,7 +271,7 @@ public class CartaController extends JPanel {
 				String[] carta2 = btnNewButton.getIcon().toString().split("[_.\\\\]");
 				//System.out.println(btnNewButton.getIcon());
 				//System.out.println(test + " fuori click mio");
-				System.out.println(carta2[1]);
+				//System.out.println(carta2[1]);
 				if(cartaScar.getIcon().toString().equals("")) {
 					FinestraGioco.btnNewButton_1_1.setEnabled(false);
 					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
@@ -317,7 +328,8 @@ public class CartaController extends JPanel {
 					cartaScar.setIcon(btnNewButton.getIcon());
 					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[2]),4));
 					//System.out.println(carta2[2]);
-					
+					mazzoCarteScartate.getMazzo().add(carta);
+					System.out.println(mazzoCarteScartate.getMazzo().size());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
 //					TurnoController turnoCtrl = new TurnoController();
 //					turnoCtrl.turnoBotSx();
@@ -447,6 +459,7 @@ public class CartaController extends JPanel {
 					
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotSx.getPanel().remove(btnNewButton);
 					
 				}
@@ -574,6 +587,7 @@ public class CartaController extends JPanel {
 					
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotSu.getPanel().remove(btnNewButton);
 					
 				}
@@ -702,6 +716,7 @@ public class CartaController extends JPanel {
 								c.setEnabled(true);
 						}
 					}
+					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotDx.getPanel().remove(btnNewButton);
 					
 					
