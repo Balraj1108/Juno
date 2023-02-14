@@ -212,6 +212,11 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Blu.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
 				panelScegliColore.setVisible(false);
+				CartaController.test = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSx();
+				//FinestraCarteMano.getPanel().remove(btnNewButton);
+				//System.out.println("ciao");
 			}
 		});
 		panelScegliColore.add(btnNewButton_1);
@@ -222,6 +227,9 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Rosso.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.red),4));
 				panelScegliColore.setVisible(false);
+				CartaController.test = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSx();
 				
 			}
 		});
@@ -233,6 +241,9 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Verde.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.green),4));
 				panelScegliColore.setVisible(false);
+				CartaController.test = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSx();
 				
 			}
 		});
@@ -244,6 +255,9 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Giallo.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.yellow),4));
 				panelScegliColore.setVisible(false);
+				CartaController.test = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSx();
 			}
 		});
 		panelScegliColore.add(btnNewButton_4);

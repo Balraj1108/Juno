@@ -269,7 +269,7 @@ public class CartaController extends JPanel {
 					test = 1;
 					//System.out.println("dentro primo if");
 					cartaScar.setIcon(btnNewButton.getIcon());
-					System.out.println(carta2[1]);
+					//System.out.println(carta2[1]);
 					FinestraCarteMano.getPanel().remove(btnNewButton);
 					TurnoController turnoCtrl = new TurnoController();
 					turnoCtrl.turnoBotSx();
@@ -341,9 +341,10 @@ public class CartaController extends JPanel {
 				}
 				
 				if (FinestraCarteMano.getPanel().getComponents().length == 0) {
-					CartaController.ranInt = 96;
+					//CartaController.ranInt = 96;
 					FinestraGioco.btnNewButton.doClick();
 					showSuccess();
+					CartaController.ranInt = 96;
 				}
 				FinestraCarteMano.getPanel().repaint();
 				FinestraCarteMano.getPanel().validate();
@@ -464,9 +465,10 @@ public class CartaController extends JPanel {
 				}
 				
 				if (FinestraBotSx.getPanel().getComponents().length == 0) {
-					CartaController.ranInt = 96;
+					//CartaController.ranInt = 96;
 					FinestraGioco.btnNewButton.doClick();
 					showError();
+					CartaController.ranInt = 96;
 				}
 				
 				FinestraBotSx.getPanel().repaint();
@@ -589,9 +591,10 @@ public class CartaController extends JPanel {
 					var2 = FinestraBotSu.getPanel().getComponents()[0].getX();
 				}
 				if (FinestraBotSu.getPanel().getComponents().length == 0) {
-					CartaController.ranInt = 96;
+					//CartaController.ranInt = 96;
 					FinestraGioco.btnNewButton.doClick();
 					showError();
+					CartaController.ranInt = 96;
 				}
 				
 				FinestraBotSu.getPanel().repaint();
@@ -722,9 +725,10 @@ public class CartaController extends JPanel {
 				}
 				//per uscire dalla window del gioco 
 				if (FinestraBotDx.getPanel().getComponents().length == 0) {
-					CartaController.ranInt = 96;
+					//CartaController.ranInt = 96;
 					FinestraGioco.btnNewButton.doClick();
 					showError();
+					CartaController.ranInt = 96;
 				}
 				
 				FinestraBotDx.getPanel().repaint();

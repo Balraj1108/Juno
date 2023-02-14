@@ -20,7 +20,7 @@ public class TurnoController {
 	//sempre in ascolto se non uso timer stop
 	public void turnoBotSx() {
 		
-		Timer timer = new Timer(2000, new  ActionListener() {
+		Timer timer = new Timer(0, new  ActionListener() {
 
 			
 			@Override
@@ -96,7 +96,7 @@ public class TurnoController {
 	
 	public void turnoBotSu() {
 		
-		Timer timer = new Timer(2000, new  ActionListener() {
+		Timer timer = new Timer(0, new  ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -152,7 +152,7 @@ public class TurnoController {
 	
 	public void turnoBotDx() {
 		
-		Timer timer = new Timer(2000, new  ActionListener() {
+		Timer timer = new Timer(0, new  ActionListener() {
 			
 			
 
