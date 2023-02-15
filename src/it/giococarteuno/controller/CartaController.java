@@ -121,6 +121,11 @@ public class CartaController extends JPanel {
 		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.CambioColore));
 		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.CambioColore));
 		
+		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.PiuQuattro));
+		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.PiuQuattro));
+		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.PiuQuattro));
+		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.PiuQuattro));
+		
 		
 		
 		
@@ -298,7 +303,8 @@ public class CartaController extends JPanel {
 				
 				
 				
-				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]) || carta2[1].equals("CambioColore"))  {
+				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]) || carta2[1].equals("CambioColore")
+						|| carta2[1].equals("PiuQuattro"))  {
 					FinestraGioco.btnNewButton_1_1.setEnabled(false);
 					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 						c.setEnabled(false);
@@ -319,6 +325,13 @@ public class CartaController extends JPanel {
 					}
 					else if(strIcon.contains("CambioColore")) {
 						FinestraGioco.panelScegliColore.setVisible(true);
+					}
+					else if(strIcon.contains("PiuQuattro")) {
+						CartaController.addCartaBotSx();
+						CartaController.addCartaBotSx();
+						CartaController.addCartaBotSx();
+						CartaController.addCartaBotSx();
+						FinestraGioco.panelScegliColorePiuQuattro.setVisible(true);
 					}
 					else {
 						test = 1;
@@ -431,10 +444,11 @@ public class CartaController extends JPanel {
 				
 				
 				
-				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
+				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
+						|| carta2[0].equals("PiuQuattro") )  {
 					//System.out.println("dentro bot");
 					contTur = 1;
-					String ciao = "c";
+					//String ciao = "c";
 					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
 					if(strIcon.contains("PiuDue")) {
@@ -466,6 +480,26 @@ public class CartaController extends JPanel {
 						contTur = 1;
 						TurnoController turnoCtrl = new TurnoController();
 						turnoCtrl.turnoBotSu();
+					}
+					else if(strIcon.contains("PiuQuattro")) {
+						CartaController.addCartaBotSu();
+						CartaController.addCartaBotSu();
+						CartaController.addCartaBotSu();
+						CartaController.addCartaBotSu();
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\PiuQuattro_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
+						contTurnSu = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotDx();
 					}
 					else {
 						contTur = 1;
@@ -582,7 +616,8 @@ public class CartaController extends JPanel {
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				
-				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
+						|| carta2[0].equals("PiuQuattro"))  {
 					//contTurnSu = 1;
 					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
@@ -616,6 +651,27 @@ public class CartaController extends JPanel {
 						contTurnSu = 1;
 						TurnoController turnoCtrl = new TurnoController();
 						turnoCtrl.turnoBotDx();
+					}
+					else if(strIcon.contains("PiuQuattro")) {
+						CartaController.addCartaBotDx();
+						CartaController.addCartaBotDx();
+						CartaController.addCartaBotDx();
+						CartaController.addCartaBotDx();
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\PiuQuattro_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
+						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+							c.setEnabled(true);
+						}
+						FinestraGioco.btnNewButton_1_1.setEnabled(true);
 					}
 					else {
 						contTurnSu = 1;
@@ -721,7 +777,8 @@ public class CartaController extends JPanel {
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				
-				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
+						|| carta2[0].equals("PiuQuattro"))  {
 					
 //					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 //					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
@@ -767,6 +824,30 @@ public class CartaController extends JPanel {
 						FinestraGioco.btnNewButton_1_1.setEnabled(true);
 						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 								c.setEnabled(true);
+						}
+					}
+					else if(strIcon.contains("PiuQuattro")) {
+						CartaController.addCartaMano();
+						CartaController.addCartaMano();
+						CartaController.addCartaMano();
+						CartaController.addCartaMano();
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\PiuQuattro_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
+						test = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotSx();
+						FinestraGioco.btnNewButton_1_1.setEnabled(false);
+						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+								c.setEnabled(false);
 						}
 					}
 					else {

@@ -55,7 +55,8 @@ public class TurnoController {
 //						for (String string : cartaBut) {
 //							System.out.println(string);
 //						}
-						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")) {
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro")) {
 							//System.out.println("for sx");
 							but.setEnabled(true);
 							but.doClick();
@@ -133,7 +134,8 @@ public class TurnoController {
 						//System.out.println(but);
 						String[] cartaBut = but.getActionCommand().toString().split("[_.\\\\]");
 						
-						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")) {
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro")) {
 							but.setEnabled(true);
 							but.doClick();
 							cartaTro = false;
@@ -205,7 +207,8 @@ public class TurnoController {
 //						for (String string : cartaBut) {
 //							System.out.println(string);
 //						}
-						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")) {
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro")) {
 							System.out.println("dentro 3 bot if");
 							System.out.println(but.getIcon() + " icon");
 							System.out.println(but.getActionCommand() + " action");

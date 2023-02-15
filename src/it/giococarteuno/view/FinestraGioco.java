@@ -42,6 +42,7 @@ public class FinestraGioco {
 	public static JButton btnNewButton;
 	public static Carta cartaS;
 	public static JPanel panelScegliColore;
+	public static JPanel panelScegliColorePiuQuattro;
 
 	/**
 	 * Launch the application.
@@ -215,9 +216,9 @@ public class FinestraGioco {
 		JButton btnNewButton_1 = new JButton("Blu");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				synchronized (btnNewButton_1) {
-					btnNewButton_1.notify();
-				}
+//				synchronized (btnNewButton_1) {
+//					btnNewButton_1.notify();
+//				}
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Blu.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
 				panelScegliColore.setVisible(false);
@@ -272,6 +273,78 @@ public class FinestraGioco {
 		panelScegliColore.add(btnNewButton_4);
 		
 		panelScegliColore.setVisible(false);
+		
+		
+		//panel per il piu quattro
+		panelScegliColorePiuQuattro = new JPanel();
+		panelScegliColorePiuQuattro.setBounds(812, 244, 150, 150);
+		frame.getContentPane().add(panelScegliColorePiuQuattro);
+		panelScegliColorePiuQuattro.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		JButton btnNewButton_11 = new JButton("Blu");
+		btnNewButton_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				synchronized (btnNewButton_1) {
+//					btnNewButton_1.notify();
+//				}
+				cartaScartata.setIcon(new ImageIcon("assets\\PiuQuattro_Blu.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
+				panelScegliColorePiuQuattro.setVisible(false);
+				
+				CartaController.contTur = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSu();
+				//FinestraCarteMano.getPanel().remove(btnNewButton);
+				//System.out.println("ciao");
+			}
+		});
+		panelScegliColorePiuQuattro.add(btnNewButton_11);
+		
+		JButton btnNewButton_31 = new JButton("Rosso");
+		btnNewButton_31.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\PiuQuattro_Rosso.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.red),4));
+				panelScegliColorePiuQuattro.setVisible(false);
+				
+				CartaController.contTur = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSu();
+				
+			}
+		});
+		panelScegliColorePiuQuattro.add(btnNewButton_31);
+		
+		JButton btnNewButton_21 = new JButton("Verde");
+		btnNewButton_21.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\PiuQuattro_Verde.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.green),4));
+				panelScegliColorePiuQuattro.setVisible(false);
+				
+				CartaController.contTur = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSu();
+				
+			}
+		});
+		panelScegliColorePiuQuattro.add(btnNewButton_21);
+		
+		JButton btnNewButton_41 = new JButton("Giallo");
+		btnNewButton_41.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartaScartata.setIcon(new ImageIcon("assets\\PiuQuattro_Giallo.png"));
+				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.yellow),4));
+				panelScegliColorePiuQuattro.setVisible(false);
+				
+				CartaController.contTur = 1;
+				TurnoController turnoCtrl = new TurnoController();
+				turnoCtrl.turnoBotSu();
+			}
+		});
+		panelScegliColorePiuQuattro.add(btnNewButton_41);
+		
+		panelScegliColorePiuQuattro.setVisible(false);
 		
 		
 		
