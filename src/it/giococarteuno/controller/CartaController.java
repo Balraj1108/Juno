@@ -57,7 +57,7 @@ public class CartaController extends JPanel {
 	public static int ranInt = 96;
 	public static Carta carta;
 	public static Mazzo mazzo;
-	public static Mazzo mazzoCarteScartate = new Mazzo();
+	public static Mazzo mazzoCarteScartate;
 	
 	
 	
@@ -82,6 +82,7 @@ public class CartaController extends JPanel {
 		//Mazzo mazzo = new Mazzo();
 		System.out.println("dentro gen");
 		mazzo = new Mazzo();
+		mazzoCarteScartate = new Mazzo();
 //		for (Valore v : Valore.values()) {
 //			System.out.println(v);
 //		}
@@ -135,7 +136,6 @@ public class CartaController extends JPanel {
 //				
 //			mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.Zero));}
 //		}
-		System.out.println(mazzo.getMazzo().size());
 		return mazzo;
 	}
 	
@@ -156,6 +156,7 @@ public class CartaController extends JPanel {
 //		mazzoCarteScartate = new Mazzo();
 //		mazzoCarteScartate.getMazzo().add(car);
 		System.out.println(mazzo.getMazzo().size() + "maz");
+		System.out.println(mazzoCarteScartate.getMazzo().size() + "mazzScart");
 		if(mazzo.getMazzo().size() == 0) {
 			mazzoCarteScartate.getMazzo().stream().forEach(cart -> mazzo.getMazzo().add(cart));
 			Collections.shuffle(mazzo.getMazzo());
@@ -329,7 +330,7 @@ public class CartaController extends JPanel {
 					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[2]),4));
 					//System.out.println(carta2[2]);
 					mazzoCarteScartate.getMazzo().add(carta);
-					System.out.println(mazzoCarteScartate.getMazzo().size());
+					//System.out.println(mazzoCarteScartate.getMazzo().size());
 					FinestraCarteMano.getPanel().remove(btnNewButton);
 //					TurnoController turnoCtrl = new TurnoController();
 //					turnoCtrl.turnoBotSx();
@@ -362,13 +363,11 @@ public class CartaController extends JPanel {
 				FinestraCarteMano.getPanel().validate();
 				
 //				else if(Arrays.asList(cartaScar.getIcon().toString().split("[_.'\']")).equals("")) {
-//					System.out.println("dentro secondo if");
 //					cartaScar.setIcon(btnNewButton.getIcon());
 //				}
 			}
 			
 		});
-		//System.out.println(btnNewButton.getIcon());
 
 		
 		Dimension d = new Dimension();
@@ -376,9 +375,7 @@ public class CartaController extends JPanel {
 		d.height = 111;
 		btnNewButton.setPreferredSize(d);
 		
-		//System.out.println(finCarteMano.getComponents().length);
 		//FinestraGioco.addFinCarteMano();
-		//System.out.println(FinestraCarteMano.getPanel().getComponents().length + " carte mano");
 		int carteMano = FinestraCarteMano.getPanel().getComponents().length;
 		//System.out.println(carteMano + " carte");
 		
@@ -418,7 +415,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("dentro click bot sx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
@@ -434,8 +431,11 @@ public class CartaController extends JPanel {
 				
 				
 				
-				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
+					//System.out.println("dentro bot");
 					contTur = 1;
+					String ciao = "c";
+					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
 					if(strIcon.contains("PiuDue")) {
 						contTurnSu = 1;
@@ -450,15 +450,36 @@ public class CartaController extends JPanel {
 						TurnoController turnoCtrl = new TurnoController();
 						turnoCtrl.turnoBotDx();
 					}
+					
+					else if(strIcon.contains("CambioColore")) {
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\CambioColore_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
+						contTur = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotSu();
+					}
 					else {
 						contTur = 1;
 						TurnoController turnoCtrl = new TurnoController();
 						turnoCtrl.turnoBotSu();
 						
 					}
-					
-					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
-					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					if(camCol == false) {
+						cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					}
+//					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+//					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					//System.out.println(cartaScar.getIcon());
 					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotSx.getPanel().remove(btnNewButton);
 					
@@ -545,7 +566,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("dentro click bot SU cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
@@ -561,8 +582,9 @@ public class CartaController extends JPanel {
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				
-				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
 					//contTurnSu = 1;
+					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
 					if(strIcon.contains("PiuDue")) {
 						CartaController.addCartaBotDx();
@@ -579,14 +601,32 @@ public class CartaController extends JPanel {
 						}
 						FinestraGioco.btnNewButton_1_1.setEnabled(true);
 					}
+					else if(strIcon.contains("CambioColore")) {
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\CambioColore_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
+						contTurnSu = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotDx();
+					}
 					else {
 						contTurnSu = 1;
 						TurnoController turnoCtrl = new TurnoController();
 						turnoCtrl.turnoBotDx();
 					}
+					if(camCol == false) {
 					
-					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
-					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+						cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					}
 					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotSu.getPanel().remove(btnNewButton);
 					
@@ -666,13 +706,14 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("dentro click bot dx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
 					
 					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 					FinestraBotDx.getPanel().remove(btnNewButton);
+					
 				}
 				
 				
@@ -680,10 +721,11 @@ public class CartaController extends JPanel {
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
 				
 				
-				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]))  {
+				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore"))  {
 					
-					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
-					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+//					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+//					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
+					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
 					
 					
@@ -710,11 +752,33 @@ public class CartaController extends JPanel {
 						}
 						
 					}
-					else {
+					else if(strIcon.contains("CambioColore")) {
+						//System.out.println("dentro bot else if");
+						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
+						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
+						Random rand = new Random();
+						int randomNumCol = rand.nextInt(3);
+						
+						camCol = true;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						cartaScar.setIcon(new ImageIcon("assets\\CambioColore_" +coloriStringa[randomNumCol] +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
+						//System.out.println(cartaScar.getIcon());
 						FinestraGioco.btnNewButton_1_1.setEnabled(true);
 						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 								c.setEnabled(true);
 						}
+					}
+					else {
+							System.out.println("dentro carta controller bot dx else");
+							FinestraGioco.btnNewButton_1_1.setEnabled(true);
+							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+									c.setEnabled(true);
+						}
+					}
+					if(camCol == false) {
+						cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
+						cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
 					}
 					mazzoCarteScartate.getMazzo().add(carta);
 					FinestraBotDx.getPanel().remove(btnNewButton);
