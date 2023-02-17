@@ -43,6 +43,7 @@ public class FinestraGioco {
 	public static Carta cartaS;
 	public static JPanel panelScegliColore;
 	public static JPanel panelScegliColorePiuQuattro;
+	public static Boolean varCambioGiro;
 
 	/**
 	 * Launch the application.
@@ -105,6 +106,10 @@ public class FinestraGioco {
 //		ImageIcon image = new ImageIcon("assets\\"+ controller.generaCarta() + ".png");
 //		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
 //		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
+		varCambioGiro = true;
+		System.out.println(varCambioGiro);
+//		varCambioGiro = false;
+//		System.out.println(varCambioGiro);
 		CartaController.generaMazzo();
 		cartaS = CartaController.generaCarta();
 		
@@ -222,9 +227,16 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Blu.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
 				panelScegliColore.setVisible(false);
-				CartaController.test = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSx();
+				if(varCambioGiro == true) {
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.testCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDxCambioGiro();
+				}
 				//FinestraCarteMano.getPanel().remove(btnNewButton);
 				//System.out.println("ciao");
 			}
@@ -237,9 +249,16 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Rosso.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.red),4));
 				panelScegliColore.setVisible(false);
-				CartaController.test = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSx();
+				if(varCambioGiro == true) {
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.testCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDxCambioGiro();
+				}
 				
 			}
 		});
@@ -251,9 +270,16 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Verde.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.green),4));
 				panelScegliColore.setVisible(false);
-				CartaController.test = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSx();
+				if(varCambioGiro == true) {
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.testCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDxCambioGiro();
+				}
 				
 			}
 		});
@@ -265,9 +291,16 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\CambioColore_Giallo.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.yellow),4));
 				panelScegliColore.setVisible(false);
-				CartaController.test = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSx();
+				if(varCambioGiro == true) {
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.testCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDxCambioGiro();
+				}
 			}
 		});
 		panelScegliColore.add(btnNewButton_4);
@@ -290,10 +323,16 @@ public class FinestraGioco {
 				cartaScartata.setIcon(new ImageIcon("assets\\PiuQuattro_Blu.png"));
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.blue),4));
 				panelScegliColorePiuQuattro.setVisible(false);
-				
-				CartaController.contTur = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSu();
+				if(varCambioGiro == true) {
+					CartaController.contTur = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
+				}
+				else {
+					CartaController.contTurCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSuCambioGiro();
+				}
 				//FinestraCarteMano.getPanel().remove(btnNewButton);
 				//System.out.println("ciao");
 			}
@@ -307,9 +346,16 @@ public class FinestraGioco {
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.red),4));
 				panelScegliColorePiuQuattro.setVisible(false);
 				
-				CartaController.contTur = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSu();
+				if(varCambioGiro == true) {
+					CartaController.contTur = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
+				}
+				else {
+					CartaController.contTurCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSuCambioGiro();
+				}
 				
 			}
 		});
@@ -322,9 +368,16 @@ public class FinestraGioco {
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.green),4));
 				panelScegliColorePiuQuattro.setVisible(false);
 				
-				CartaController.contTur = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSu();
+				if(varCambioGiro == true) {
+					CartaController.contTur = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
+				}
+				else {
+					CartaController.contTurCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSuCambioGiro();
+				}
 				
 			}
 		});
@@ -337,9 +390,16 @@ public class FinestraGioco {
 				cartaScartata.setBorder(BorderFactory.createLineBorder((Color.yellow),4));
 				panelScegliColorePiuQuattro.setVisible(false);
 				
-				CartaController.contTur = 1;
-				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSu();
+				if(varCambioGiro == true) {
+					CartaController.contTur = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSu();
+				}
+				else {
+					CartaController.contTurCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSuCambioGiro();
+				}
 			}
 		});
 		panelScegliColorePiuQuattro.add(btnNewButton_41);

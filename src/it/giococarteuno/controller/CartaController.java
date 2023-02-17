@@ -52,6 +52,12 @@ public class CartaController extends JPanel {
 	public static int contTur = 0;
 	public static int contTurnSu = 0;
 	
+	public static int testCambioGiro = 0;
+	public static int contTurCambioGiro = 0;
+	public static int contTurnSuCambioGiro = 0;
+	
+	
+	
 	public static int meno = 10;
 	public static int cont = 0;
 	public static int ranInt = 96;
@@ -87,7 +93,7 @@ public class CartaController extends JPanel {
 //			System.out.println(v);
 //		}
 		for(int j = 0; j < 2; j++) {
-			for(int i = 1; i < Valore.values().length-5; i++) {
+			for(int i = 1; i < Valore.values().length-2; i++) {
 				for(int k = 0; k < Colore.values().length-1; k++) {
 					mazzo.getMazzo().add(new Carta(Colore.values()[k], Valore.values()[i]));
 				}
@@ -97,24 +103,6 @@ public class CartaController extends JPanel {
 		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.Zero));
 		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.Zero));
 		mazzo.getMazzo().add(new Carta(Colore.Rosso, Valore.Zero));
-		
-		mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Rosso, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.PiuDue));
-		mazzo.getMazzo().add(new Carta(Colore.Rosso, Valore.PiuDue));
-		
-		mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Rosso, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Blu, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Giallo, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Verde, Valore.Blocca));
-		mazzo.getMazzo().add(new Carta(Colore.Rosso, Valore.Blocca));
 		
 		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.CambioColore));
 		mazzo.getMazzo().add(new Carta(Colore.QuattroColori, Valore.CambioColore));
@@ -283,16 +271,29 @@ public class CartaController extends JPanel {
 					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 							c.setEnabled(false);
 					}
-					test = 1;
-					//System.out.println("dentro primo if");
-					cartaScar.setIcon(btnNewButton.getIcon());
-					//System.out.println(carta2[1]);
-					FinestraCarteMano.getPanel().remove(btnNewButton);
-					TurnoController turnoCtrl = new TurnoController();
-					turnoCtrl.turnoBotSx();
-					//System.out.println(test + " dentro click mio");
-					//FinestraCarteMano.getPanel().repaint();
-					//FinestraCarteMano.getPanel().validate();
+					if(FinestraGioco.varCambioGiro == true) {
+						test = 1;
+						//System.out.println("dentro primo if");
+						cartaScar.setIcon(btnNewButton.getIcon());
+						//System.out.println(carta2[1]);
+						FinestraCarteMano.getPanel().remove(btnNewButton);
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotSx();
+						//System.out.println(test + " dentro click mio");
+						//FinestraCarteMano.getPanel().repaint();
+						//FinestraCarteMano.getPanel().validate();
+					}
+					else {
+						testCambioGiro = 1;
+						
+						cartaScar.setIcon(btnNewButton.getIcon());
+						
+						FinestraCarteMano.getPanel().remove(btnNewButton);
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotDxCambioGiro();
+						
+						
+					}
 				}
 				
 				
@@ -304,39 +305,91 @@ public class CartaController extends JPanel {
 				
 				
 				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]) || carta2[1].equals("CambioColore")
-						|| carta2[1].equals("PiuQuattro"))  {
+						|| carta2[1].equals("PiuQuattro") || carta2[1].equals("CambioGiro"))  {
 					FinestraGioco.btnNewButton_1_1.setEnabled(false);
 					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 						c.setEnabled(false);
 					}
 					String strIcon = btnNewButton.getIcon() + "";
 					if(strIcon.contains("PiuDue")) {
-						contTur = 1;
-						CartaController.addCartaBotSx();
-						CartaController.addCartaBotSx();
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSu();
+						if(FinestraGioco.varCambioGiro == true) {
+							contTur = 1;
+							CartaController.addCartaBotSx();
+							CartaController.addCartaBotSx();
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSu();
+						}
+						else {
+							contTurCambioGiro = 1;
+							CartaController.addCartaBotDx();
+							CartaController.addCartaBotDx();
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSuCambioGiro();
+							
+						}
 						
 					}
 					else if(strIcon.contains("Blocca")) {
-						contTur = 1;
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSu();
+						if(FinestraGioco.varCambioGiro == true) {
+							
+						
+							contTur = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSu();
+						}
+						else {
+							contTurCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSuCambioGiro();
+						}
 					}
 					else if(strIcon.contains("CambioColore")) {
 						FinestraGioco.panelScegliColore.setVisible(true);
 					}
 					else if(strIcon.contains("PiuQuattro")) {
-						CartaController.addCartaBotSx();
-						CartaController.addCartaBotSx();
-						CartaController.addCartaBotSx();
-						CartaController.addCartaBotSx();
+						if(FinestraGioco.varCambioGiro == true) {
+							CartaController.addCartaBotSx();
+							CartaController.addCartaBotSx();
+							CartaController.addCartaBotSx();
+							CartaController.addCartaBotSx();
+						}
+						else {
+							CartaController.addCartaBotDx();
+							CartaController.addCartaBotDx();
+							CartaController.addCartaBotDx();
+							CartaController.addCartaBotDx();
+						}
 						FinestraGioco.panelScegliColorePiuQuattro.setVisible(true);
 					}
+					else if(strIcon.contains("CambioGiro")) {
+						if(FinestraGioco.varCambioGiro == true) {
+							System.out.println("entra cambio giro if");
+							FinestraGioco.varCambioGiro = false;
+							testCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotDxCambioGiro();
+						}
+						else {
+							System.out.println("entra cambio giro else ");
+							FinestraGioco.varCambioGiro = true;
+							test = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSx();
+						
+						}
+					}
+					
 					else {
-						test = 1;
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSx();
+						if(FinestraGioco.varCambioGiro == true) {
+							test = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSx();
+						}
+						else {
+							testCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotDxCambioGiro();
+						}
 					}
 //					test = 1;
 					cartaScar.setIcon(btnNewButton.getIcon());
@@ -445,7 +498,7 @@ public class CartaController extends JPanel {
 				
 				
 				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
-						|| carta2[0].equals("PiuQuattro") )  {
+						|| carta2[0].equals("PiuQuattro") || carta2[0].equals("CambioGiro") )  {
 					//System.out.println("dentro bot");
 					contTur = 1;
 					//String ciao = "c";
@@ -617,7 +670,7 @@ public class CartaController extends JPanel {
 				
 				
 				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
-						|| carta2[0].equals("PiuQuattro"))  {
+						|| carta2[0].equals("PiuQuattro") || carta2[0].equals("CambioGiro"))  {
 					//contTurnSu = 1;
 					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
@@ -787,25 +840,42 @@ public class CartaController extends JPanel {
 					
 					
 					if(strIcon.contains("PiuDue")) {
-						test = 1;
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSx();
-						CartaController.addCartaMano();
-						CartaController.addCartaMano();
-						FinestraGioco.btnNewButton_1_1.setEnabled(false);
-						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
-								c.setEnabled(false);
+						if(FinestraGioco.varCambioGiro == true) {
+							test = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSx();
+							CartaController.addCartaMano();
+							CartaController.addCartaMano();
+							FinestraGioco.btnNewButton_1_1.setEnabled(false);
+							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+									c.setEnabled(false);
+							}
 						}
-						
+						else {
+							CartaController.addCartaBotSu();
+							CartaController.addCartaBotSu();
+							contTurCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSxCambioGiro();
+							
+						}
 						
 					}
 					else if(strIcon.contains("Blocca")) {
-						test = 1;
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSx();
-						FinestraGioco.btnNewButton_1_1.setEnabled(false);
-						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
-								c.setEnabled(false);
+						if(FinestraGioco.varCambioGiro == true) {
+							test = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSx();
+							FinestraGioco.btnNewButton_1_1.setEnabled(false);
+							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+									c.setEnabled(false);
+							}
+						}
+						else {
+							contTurnSuCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSxCambioGiro();
+							
 						}
 						
 					}
@@ -821,16 +891,31 @@ public class CartaController extends JPanel {
 						cartaScar.setIcon(new ImageIcon("assets\\CambioColore_" +coloriStringa[randomNumCol] +".png"));
 						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
 						//System.out.println(cartaScar.getIcon());
-						FinestraGioco.btnNewButton_1_1.setEnabled(true);
-						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+						if(FinestraGioco.varCambioGiro == true) {
+							FinestraGioco.btnNewButton_1_1.setEnabled(true);
+							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 								c.setEnabled(true);
+							}
+						}
+						else {
+							contTurCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSuCambioGiro();
 						}
 					}
 					else if(strIcon.contains("PiuQuattro")) {
-						CartaController.addCartaMano();
-						CartaController.addCartaMano();
-						CartaController.addCartaMano();
-						CartaController.addCartaMano();
+						if(FinestraGioco.varCambioGiro == true) {
+							CartaController.addCartaMano();
+							CartaController.addCartaMano();
+							CartaController.addCartaMano();
+							CartaController.addCartaMano();
+						}
+						else {
+							CartaController.addCartaBotSu();
+							CartaController.addCartaBotSu();
+							CartaController.addCartaBotSu();
+							CartaController.addCartaBotSu();
+						}
 						//System.out.println("dentro bot else if");
 						String[] coloriStringa = {"Blu", "Giallo", "Verde", "Rosso"};
 						Color[] colori = {Color.blue, Color.yellow, Color.green, Color.red};
@@ -842,19 +927,33 @@ public class CartaController extends JPanel {
 						cartaScar.setIcon(new ImageIcon("assets\\PiuQuattro_" +coloriStringa[randomNumCol] +".png"));
 						cartaScar.setBorder(BorderFactory.createLineBorder(colori[randomNumCol],4));
 						//System.out.println(cartaScar.getIcon());
-						test = 1;
-						TurnoController turnoCtrl = new TurnoController();
-						turnoCtrl.turnoBotSx();
-						FinestraGioco.btnNewButton_1_1.setEnabled(false);
-						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
-								c.setEnabled(false);
+						if(FinestraGioco.varCambioGiro == true) {
+							test = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSx();
+							FinestraGioco.btnNewButton_1_1.setEnabled(false);
+							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+									c.setEnabled(false);
+							}
+						}
+						else {
+							contTurnSuCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSxCambioGiro();
 						}
 					}
 					else {
+						if(FinestraGioco.varCambioGiro == true)
+						{
 							System.out.println("dentro carta controller bot dx else");
 							FinestraGioco.btnNewButton_1_1.setEnabled(true);
 							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 									c.setEnabled(true);
+							}
+						}else {
+							contTurCambioGiro = 1;
+							TurnoController turnoCtrl = new TurnoController();
+							turnoCtrl.turnoBotSuCambioGiro();
 						}
 					}
 					if(camCol == false) {

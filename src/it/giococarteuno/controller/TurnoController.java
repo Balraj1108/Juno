@@ -20,7 +20,7 @@ public class TurnoController {
 	//sempre in ascolto se non uso timer stop
 	public void turnoBotSx() {
 		
-		Timer timer = new Timer(0, new  ActionListener() {
+		Timer timer = new Timer(2000, new  ActionListener() {
 			
 
 			
@@ -106,7 +106,7 @@ public class TurnoController {
 	
 	public void turnoBotSu() {
 		
-		Timer timer = new Timer(0, new  ActionListener() {
+		Timer timer = new Timer(2000, new  ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -172,7 +172,7 @@ public class TurnoController {
 	
 	public void turnoBotDx() {
 		
-		Timer timer = new Timer(0, new  ActionListener() {
+		Timer timer = new Timer(2000, new  ActionListener() {
 			
 			
 
@@ -252,4 +252,183 @@ public class TurnoController {
 		timer.start();
 		
 	}
+	
+	public void turnoBotDxCambioGiro() {
+		
+		Timer timer = new Timer(2000, new  ActionListener() {
+			
+
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CartaController.testCambioGiro == 1) {
+					Boolean cartaTro = true; 
+					//System.out.println("bot sx");
+					//JButton cartaBotSx = new JButton();
+					JButton cartaScar = FinestraGioco.getCartaScartata();
+					//System.out.println(cartaScar);
+					String[] cartaS = cartaScar.getIcon().toString().split("[_.\\\\]");
+//					for (String string : cartaS) {
+//						System.out.println(string);
+//					}
+					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
+					for (Component com : FinestraBotDx.getPanel().getComponents()) {
+						//System.out.println("dentro for bot sx");
+						JButton but = new JButton();
+						but = (JButton) com;
+						//System.out.println(but);
+						String[] cartaBut = but.getActionCommand().toString().split("[_.\\\\]");
+//						for (String string : cartaBut) {
+//							System.out.println(string);
+//						}
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro") || cartaBut[0].equals("CambioGiro")) {
+							//System.out.println("for sx");
+							but.setEnabled(true);
+							but.doClick();
+							cartaTro = false;
+							break;
+						}
+						
+					}
+					if(cartaTro == true) {
+						CartaController.contTurCambioGiro = 1;
+						CartaController.addCartaBotSx();
+						
+						turnoBotSuCambioGiro();
+					}
+					
+					
+					CartaController.testCambioGiro++;
+				}
+				if(CartaController.testCambioGiro > 1) {
+					Timer t = (Timer) e.getSource();
+					t.stop();
+				}
+				
+				
+			}
+			
+		});
+		timer.start();
+	}
+	
+	public void turnoBotSuCambioGiro() {
+		
+		Timer timer = new Timer(2000, new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(CartaController.contTurCambioGiro == 1) {
+					Boolean cartaTro = true;
+					JButton cartaScar = FinestraGioco.getCartaScartata();
+					String[] cartaS = cartaScar.getIcon().toString().split("[_.\\\\]");
+//					for (String string : cartaS) {
+//						System.out.println(string);
+//					}
+					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
+					System.out.println("fine bot su");
+					for (Component com : FinestraBotSu.getPanel().getComponents()) {
+						JButton but = new JButton();
+						but = (JButton) com;
+						//System.out.println(but);
+						String[] cartaBut = but.getActionCommand().toString().split("[_.\\\\]");
+						
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro") || cartaBut[0].equals("PiuQuattro")) {
+							but.setEnabled(true);
+							but.doClick();
+							cartaTro = false;
+							break;
+						}
+						
+					}
+					if(cartaTro == true) {
+						CartaController.contTurnSuCambioGiro = 1;
+						CartaController.addCartaBotSu();
+						turnoBotSxCambioGiro();
+					}
+					
+					CartaController.contTurCambioGiro++;
+				}
+				if(CartaController.contTurCambioGiro > 1) {
+					Timer t = (Timer) e.getSource();
+					t.stop();
+				}
+				
+				
+				
+			}
+			
+		});
+		timer.start();
+		
+	}
+	
+	public void turnoBotSxCambioGiro() {
+		
+		Timer timer = new Timer(2000, new  ActionListener() {
+			
+			
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(CartaController.contTurnSuCambioGiro == 1) {
+					Boolean cartaTro = true;
+					JButton cartaScar = FinestraGioco.getCartaScartata();
+					//System.out.println(cartaScar);
+					String[] cartaS = cartaScar.getIcon().toString().split("[_.\\\\]");
+//					for (String string : cartaS) {
+//						System.out.println(string);
+//					}
+					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
+					
+					for (Component com : FinestraBotSx.getPanel().getComponents()) {
+						//System.out.println("dentro for bot dx");
+						JButton but = new JButton();
+						but = (JButton) com;
+						//System.out.println(but);
+						//System.out.println(but.getActionCommand());
+						String[] cartaBut = but.getActionCommand().toString().split("[_.\\\\]");
+//						for (String string : cartaBut) {
+//							System.out.println(string);
+//						}
+						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
+								|| cartaBut[0].equals("PiuQuattro") || cartaBut[0].equals("CambioGiro")) {
+							
+							but.setEnabled(true);
+							but.doClick();
+							cartaTro = false;
+							break;
+						}
+						
+					}
+					if(cartaTro == true) {
+						System.out.println("dentro 3 bot secondo if sotto");
+						CartaController.testCambioGiro = 1;
+						CartaController.addCartaBotSx();
+						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+							c.setEnabled(true);
+						}
+						FinestraGioco.btnNewButton_1_1.setEnabled(true);
+					}
+					
+					CartaController.contTurnSuCambioGiro++;
+				}
+				if(CartaController.contTurnSuCambioGiro > 1) {
+					Timer t = (Timer) e.getSource();
+					t.stop();
+				}
+				
+				
+			}
+			
+		});
+		timer.start();
+		
+	}
+	
+	
 }
