@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import it.giococarteuno.MainFinestraIniziale;
 import it.giococarteuno.controller.CartaController;
 import it.giococarteuno.controller.TurnoController;
+import it.giococarteuno.dao.UtenteDAO;
 import it.giococarteuno.model.Carta;
 import it.giococarteuno.model.Colore;
 import it.giococarteuno.model.Utente;
@@ -44,6 +45,11 @@ public class FinestraGioco {
 	public static JPanel panelScegliColore;
 	public static JPanel panelScegliColorePiuQuattro;
 	public static Boolean varCambioGiro;
+	
+	public static JLabel corniveAvatarGiocatore;
+	public static JLabel corniveAvatarBotDx;
+	public static JLabel corniveAvatarBotSu;
+	public static JLabel corniveAvatarBotSx;
 
 	/**
 	 * Launch the application.
@@ -68,6 +74,8 @@ public class FinestraGioco {
 	 */
 	public FinestraGioco() {
 		initialize();
+		TurnoController turnoCtrl = new TurnoController();
+		turnoCtrl.checkBorderGiocatore();
 	}
 	
 	public static  void addFinCarteMano() {
@@ -162,14 +170,26 @@ public class FinestraGioco {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//CartaController ctrl = new CartaController();
-				CartaController.pescaCarta();
-				for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+				if(varCambioGiro == true) {
+					CartaController.pescaCarta();
+					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
+							c.setEnabled(false);
+					}
+					btnNewButton_1_1.setEnabled(false);
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.pescaCarta();
+					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 						c.setEnabled(false);
 				}
 				btnNewButton_1_1.setEnabled(false);
-				CartaController.test = 1;
+				CartaController.testCambioGiro = 1;
 				TurnoController turnoCtrl = new TurnoController();
-				turnoCtrl.turnoBotSx();
+				turnoCtrl.turnoBotDxCambioGiro();
+				}
 			}
 		});
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);
@@ -180,7 +200,8 @@ public class FinestraGioco {
 		btnNewButton = new JButton("Esci");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CartaController.ranInt = 96;
+				
+				
 				JComponent comp = (JComponent) e.getSource();
 				Window win = SwingUtilities.getWindowAncestor(comp);
 				win.dispose();
@@ -191,7 +212,12 @@ public class FinestraGioco {
 //				MainFinestraIniziale.getPanel().repaint();
 				FinestraBenvenuto.getPanel().setVisible(true);
 //				MainFinestraIniziale.getPanel().setVisible(true);
-
+				UtenteDAO utenteDAO = new UtenteDAO();
+				
+				MainFinestraIniziale.setStringaNickname(utenteDAO.findByNickname(utenteLog.getNickname()));
+				utenteLog = utenteDAO.findByNickname(utenteLog.getNickname());
+				
+				//MainFinestraIniziale.getStringaNickname().setLivello(null);
 //				MainFinestraIniziale.getFrame().revalidate();;
 //				MainFinestraIniziale.getFrame().repaint();
 //				MainFinestraIniziale.getPanel().revalidate();
@@ -406,8 +432,29 @@ public class FinestraGioco {
 		
 		panelScegliColorePiuQuattro.setVisible(false);
 		
+		//giocatore
+		corniveAvatarGiocatore = new JLabel();
+		corniveAvatarGiocatore.setBounds(632, 466, 50, 50);
+		frame.getContentPane().add(corniveAvatarGiocatore);
+		corniveAvatarGiocatore.setBorder(BorderFactory.createLineBorder((Color.red),2));
 		
+		//bot sx
+		corniveAvatarBotSx = new JLabel();
+		corniveAvatarBotSx.setBorder(BorderFactory.createLineBorder((Color.black),2));
+		corniveAvatarBotSx.setBounds(182, 344, 50, 50);
+		frame.getContentPane().add(corniveAvatarBotSx);
 		
+		//bot su
+		corniveAvatarBotSu = new JLabel();
+		corniveAvatarBotSu.setBorder(BorderFactory.createLineBorder((Color.black),2));
+		corniveAvatarBotSu.setBounds(632, 167, 50, 50);
+		frame.getContentPane().add(corniveAvatarBotSu);
+		
+		//bot dx
+		corniveAvatarBotDx = new JLabel();
+		corniveAvatarBotDx.setBorder(BorderFactory.createLineBorder((Color.black),2));
+		corniveAvatarBotDx.setBounds(1126, 344, 50, 50);
+		frame.getContentPane().add(corniveAvatarBotDx);
 		
 		MainFinestraIniziale.setStringaNickname(utenteLog);
 		

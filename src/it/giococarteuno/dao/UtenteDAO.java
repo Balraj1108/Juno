@@ -131,4 +131,76 @@ public class UtenteDAO {
 
 		return result;
 	}
+	
+	public int updateStatsWin( Long id) {
+
+		if (id == null) {
+			return 0;
+		}
+
+		Connection c = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			c = MyConnection.getConnection();
+			ps = c.prepareStatement("UPDATE utente SET livello= livello + 1 "
+					+ ", partitegiocate = partitegiocate +1 , partitevinte = partitevinte + 1  where id=?");
+			ps.setLong(1, id);
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			try {
+				ps.close();
+				c.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+	
+	public int updateStatsLose( Long id) {
+
+		if (id == null) {
+			return 0;
+		}
+
+		Connection c = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			c = MyConnection.getConnection();
+			ps = c.prepareStatement("UPDATE utente SET  "
+					+ " partitegiocate = partitegiocate +1 , partiteperse = partiteperse + 1  where id=?");
+			ps.setLong(1, id);
+
+			result = ps.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			try {
+				ps.close();
+				c.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 }
