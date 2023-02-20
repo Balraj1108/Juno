@@ -393,6 +393,7 @@ public class CartaController extends JPanel {
 						}
 					}
 //					test = 1;
+					
 					cartaScar.setIcon(btnNewButton.getIcon());
 					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[2]),4));
 					//System.out.println(carta2[2]);
@@ -405,6 +406,13 @@ public class CartaController extends JPanel {
 					//FinestraCarteMano.getPanel().repaint();
 					//FinestraCarteMano.getPanel().validate();
 				}
+//				if (FinestraCarteMano.getPanel().getComponents().length == 1) {
+//					//CartaController.ranInt = 96;
+//					FinestraGioco.clickUnoButton.setVisible(true);
+//					//CartaController.ranInt = 96;
+//					TurnoController.tempoDelay = 5000;
+//					
+//				}
 				
 				int carteMano = FinestraCarteMano.getPanel().getComponents().length;
 				
@@ -429,6 +437,7 @@ public class CartaController extends JPanel {
 					//CartaController.ranInt = 96;
 					
 				}
+				
 				FinestraCarteMano.getPanel().repaint();
 				FinestraCarteMano.getPanel().validate();
 				

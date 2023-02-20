@@ -18,10 +18,13 @@ import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 public class TurnoController {
 
-	private int tempoDelay = 0;
+	public static int tempoDelay = 0;
 	//sempre in ascolto se non uso timer stop
 	public void turnoBotSx() {
-		
+		if(FinestraCarteMano.getPanel().getComponents().length == 1) {
+			FinestraGioco.clickUnoButton.setVisible(true);
+			tempoDelay = 100000;
+		}
 		//FinestraGioco.corniveAvatarGiocatore.setBorder(BorderFactory.createLineBorder((Color.black),2));
 		FinestraGioco.corniveAvatarBotSx.setBorder(BorderFactory.createLineBorder((Color.red),2));
 		
@@ -267,7 +270,10 @@ public class TurnoController {
 	}
 	
 	public void turnoBotDxCambioGiro() {
-		
+		if(FinestraCarteMano.getPanel().getComponents().length == 1) {
+			FinestraGioco.clickUnoButton.setVisible(true);
+			tempoDelay = 100000;
+		}
 		FinestraGioco.corniveAvatarBotDx.setBorder(BorderFactory.createLineBorder((Color.red),2));
 		
 		Timer timer = new Timer(tempoDelay, new  ActionListener() {

@@ -50,6 +50,8 @@ public class FinestraGioco {
 	public static JLabel corniveAvatarBotDx;
 	public static JLabel corniveAvatarBotSu;
 	public static JLabel corniveAvatarBotSx;
+	
+	public static JButton clickUnoButton;
 
 	/**
 	 * Launch the application.
@@ -455,6 +457,27 @@ public class FinestraGioco {
 		corniveAvatarBotDx.setBorder(BorderFactory.createLineBorder((Color.black),2));
 		corniveAvatarBotDx.setBounds(1126, 344, 50, 50);
 		frame.getContentPane().add(corniveAvatarBotDx);
+		
+		clickUnoButton = new JButton("UNOOO");
+		clickUnoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(varCambioGiro == true) {
+					CartaController.test = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotSx();
+				}
+				else {
+					CartaController.testCambioGiro = 1;
+					TurnoController turnoCtrl = new TurnoController();
+					turnoCtrl.turnoBotDxCambioGiro();
+				}
+				clickUnoButton.setVisible(false);
+			}
+		});
+		clickUnoButton.setBounds(326, 442, 121, 59);
+		frame.getContentPane().add(clickUnoButton);
+		clickUnoButton.setVisible(false);
+		
 		
 		MainFinestraIniziale.setStringaNickname(utenteLog);
 		
