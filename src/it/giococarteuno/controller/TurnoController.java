@@ -17,13 +17,22 @@ import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 public class TurnoController {
-
-	public static int tempoDelay = 0;
+	
+	public static int tempoDelay = 3000;
 	//sempre in ascolto se non uso timer stop
 	public void turnoBotSx() {
-		if(FinestraCarteMano.getPanel().getComponents().length == 1) {
+//		System.out.println(FinestraCarteMano.getPanel().getComponents().length);
+//		if(FinestraCarteMano.getPanel().getComponents().length == 1) {
+//			System.out.println(tempoDelay);
+//			System.out.println("dentro if turnobotsx");
+//			FinestraGioco.clickUnoButton.setVisible(true);
+//			tempoDelay = 10000;
+//			System.out.println(tempoDelay);
+//		}
+		if(CartaController.clickUnoController == 1) {
 			FinestraGioco.clickUnoButton.setVisible(true);
-			tempoDelay = 100000;
+			CartaController.clickUnoController = 0;
+			return;
 		}
 		//FinestraGioco.corniveAvatarGiocatore.setBorder(BorderFactory.createLineBorder((Color.black),2));
 		FinestraGioco.corniveAvatarBotSx.setBorder(BorderFactory.createLineBorder((Color.red),2));
@@ -34,7 +43,7 @@ public class TurnoController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("bot SX");
+				//System.out.println("bot SX");
 				if(CartaController.test == 1) {
 					Boolean cartaTro = true; 
 					//System.out.println("bot sx");
@@ -46,14 +55,14 @@ public class TurnoController {
 //						System.out.println(string);
 //					}
 					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
-					System.out.println("inizo bot sx");
+					//System.out.println("inizo bot sx");
 					for (Component com : FinestraBotDx.getPanel().getComponents()) {
 						JButton but = new JButton();
 						but = (JButton) com;
 						//System.out.println(but);
-						System.out.println(but.getActionCommand());
+						//System.out.println(but.getActionCommand());
 					}
-					System.out.println("fine bot sx");
+					//System.out.println("fine bot sx");
 					for (Component com : FinestraBotSx.getPanel().getComponents()) {
 						//System.out.println("dentro for bot sx");
 						JButton but = new JButton();
@@ -122,7 +131,7 @@ public class TurnoController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("bot Su");
+				//System.out.println("bot Su");
 				
 				if(CartaController.contTur == 1) {
 					Boolean cartaTro = true;
@@ -132,14 +141,14 @@ public class TurnoController {
 //						System.out.println(string);
 //					}
 					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
-					System.out.println("inizo bot su");
+					//System.out.println("inizo bot su");
 					for (Component com : FinestraBotDx.getPanel().getComponents()) {
 						JButton but = new JButton();
 						but = (JButton) com;
 						//System.out.println(but);
-						System.out.println(but.getActionCommand());
+						//System.out.println(but.getActionCommand());
 					}
-					System.out.println("fine bot su");
+					//System.out.println("fine bot su");
 					for (Component com : FinestraBotSu.getPanel().getComponents()) {
 						JButton but = new JButton();
 						but = (JButton) com;
@@ -185,6 +194,8 @@ public class TurnoController {
 	
 	public void turnoBotDx() {
 		
+		
+		
 		FinestraGioco.corniveAvatarBotDx.setBorder(BorderFactory.createLineBorder((Color.red),2));
 		
 		Timer timer = new Timer(tempoDelay, new  ActionListener() {
@@ -193,7 +204,7 @@ public class TurnoController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("bot DX");
+				//System.out.println("bot DX");
 				
 				if(CartaController.contTurnSu == 1) {
 					Boolean cartaTro = true;
@@ -204,14 +215,14 @@ public class TurnoController {
 //						System.out.println(string);
 //					}
 					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
-					System.out.println("inizo bot dx");
+					//System.out.println("inizo bot dx");
 					for (Component com : FinestraBotDx.getPanel().getComponents()) {
 						JButton but = new JButton();
 						but = (JButton) com;
 						//System.out.println(but);
-						System.out.println(but.getActionCommand());
+						//System.out.println(but.getActionCommand());
 					}
-					System.out.println("fine bot dx");
+					//System.out.println("fine bot dx");
 					for (Component com : FinestraBotDx.getPanel().getComponents()) {
 						//System.out.println("dentro for bot dx");
 						JButton but = new JButton();
@@ -224,9 +235,9 @@ public class TurnoController {
 //						}
 						if(cartaS[1].equals(cartaBut[0]) || cartaS[2].equals(cartaBut[1]) || cartaBut[0].equals("CambioColore")
 								|| cartaBut[0].equals("PiuQuattro") || cartaBut[0].equals("CambioGiro")) {
-							System.out.println("dentro 3 bot if");
-							System.out.println(but.getIcon() + " icon");
-							System.out.println(but.getActionCommand() + " action");
+							//System.out.println("dentro 3 bot if");
+							//System.out.println(but.getIcon() + " icon");
+							//System.out.println(but.getActionCommand() + " action");
 							but.setEnabled(true);
 							but.doClick();
 							cartaTro = false;
@@ -240,7 +251,7 @@ public class TurnoController {
 						
 					}
 					if(cartaTro == true) {
-						System.out.println("dentro 3 bot secondo if sotto");
+						//System.out.println("dentro 3 bot secondo if sotto");
 						CartaController.test = 1;
 						CartaController.addCartaBotDx();
 						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
@@ -270,9 +281,10 @@ public class TurnoController {
 	}
 	
 	public void turnoBotDxCambioGiro() {
-		if(FinestraCarteMano.getPanel().getComponents().length == 1) {
+		if(CartaController.clickUnoController == 1) {
 			FinestraGioco.clickUnoButton.setVisible(true);
-			tempoDelay = 100000;
+			CartaController.clickUnoController = 0;
+			return;
 		}
 		FinestraGioco.corniveAvatarBotDx.setBorder(BorderFactory.createLineBorder((Color.red),2));
 		
@@ -352,7 +364,7 @@ public class TurnoController {
 //						System.out.println(string);
 //					}
 					//String[] carta2 = cartaBotSx.getIcon().toString().split("[_.\\\\]");
-					System.out.println("fine bot su");
+					//System.out.println("fine bot su");
 					for (Component com : FinestraBotSu.getPanel().getComponents()) {
 						JButton but = new JButton();
 						but = (JButton) com;
@@ -433,7 +445,7 @@ public class TurnoController {
 						
 					}
 					if(cartaTro == true) {
-						System.out.println("dentro 3 bot secondo if sotto");
+						//System.out.println("dentro 3 bot secondo if sotto");
 						CartaController.testCambioGiro = 1;
 						CartaController.addCartaBotSx();
 						for (Component c : FinestraCarteMano.getPanel().getComponents()) {
@@ -473,9 +485,39 @@ public class TurnoController {
 				else {
 					FinestraGioco.corniveAvatarGiocatore.setBorder(BorderFactory.createLineBorder((Color.black),2));
 				}
+			}
+			
+		});
+		timer.start();
+		
+	}
+	
+	public void checkClickUnoGiocatore() {
+		
+		Timer timer = new Timer(5000, new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				
-				
-				
+				if(FinestraGioco.checkBtnclick == 0) {
+					CartaController.pescaCarta();
+					CartaController.pescaCarta();
+					if(FinestraGioco.varCambioGiro == true) {
+						CartaController.test = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotSx();
+						
+					}
+					else {
+						CartaController.testCambioGiro = 1;
+						TurnoController turnoCtrl = new TurnoController();
+						turnoCtrl.turnoBotDxCambioGiro();
+					}
+					FinestraGioco.clickUnoButton.setVisible(false);
+				}
+				FinestraGioco.checkBtnclick = 0;
+				Timer t = (Timer) e.getSource();
+				t.stop();
 			}
 			
 		});

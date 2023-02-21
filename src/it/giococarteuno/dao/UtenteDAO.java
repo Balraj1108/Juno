@@ -30,7 +30,7 @@ public class UtenteDAO {
 			ps.setString(1, input);
 
 			rs = ps.executeQuery();
-			System.out.println("try");
+			//System.out.println("try");
 
 			if (rs.next()) {
 				result = new Utente();

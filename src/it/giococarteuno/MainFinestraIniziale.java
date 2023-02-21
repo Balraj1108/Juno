@@ -54,7 +54,7 @@ public class MainFinestraIniziale extends JFrame {
 	 * Create the application.
 	 */
 	public MainFinestraIniziale() {
-		System.out.println("ciao");
+		//System.out.println("ciao");
 		initialize();
 	}
 	
@@ -129,8 +129,8 @@ public class MainFinestraIniziale extends JFrame {
 				UtenteDAO utenteDAO = new UtenteDAO();
 				String nicknameText = textField.getText();
 				textField.setText("");
-				System.out.println(nicknameText + " testo che inserisco io");
-				System.out.println(utenteDAO.findByNickname(nicknameText));
+				//.out.println(nicknameText + " testo che inserisco io");
+				//System.out.println(utenteDAO.findByNickname(nicknameText));
 				setStringaNickname(utenteDAO.findByNickname(nicknameText));
 				
 				if(stringaNickname == null) {
@@ -141,7 +141,7 @@ public class MainFinestraIniziale extends JFrame {
 				
 				FinestraGioco.setUtenteLog(stringaNickname);
 				
-				System.out.println(stringaNickname + "variabile");
+				//System.out.println(stringaNickname + "variabile");
 				
 //				lblNewLabel.setVisible(false);
 //				btnNewButton.setVisible(false);

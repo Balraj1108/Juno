@@ -57,6 +57,8 @@ public class CartaController extends JPanel {
 	public static int contTurCambioGiro = 0;
 	public static int contTurnSuCambioGiro = 0;
 	
+	public static int clickUnoController = 0;
+	
 	
 	
 	public static int meno = 10;
@@ -149,8 +151,8 @@ public class CartaController extends JPanel {
 		mazzo.getMazzo().remove(car);
 //		mazzoCarteScartate = new Mazzo();
 //		mazzoCarteScartate.getMazzo().add(car);
-		System.out.println(mazzo.getMazzo().size() + "maz");
-		System.out.println(mazzoCarteScartate.getMazzo().size() + "mazzScart");
+		//System.out.println(mazzo.getMazzo().size() + "maz");
+		//System.out.println(mazzoCarteScartate.getMazzo().size() + "mazzScart");
 		if(mazzo.getMazzo().size() == 0) {
 			mazzoCarteScartate.getMazzo().stream().forEach(cart -> mazzo.getMazzo().add(cart));
 			Collections.shuffle(mazzo.getMazzo());
@@ -307,6 +309,13 @@ public class CartaController extends JPanel {
 				
 				else if(carta1[1].equals(carta2[1]) || carta1[2].equals(carta2[2]) || carta2[1].equals("CambioColore")
 						|| carta2[1].equals("PiuQuattro"))  {
+					if(FinestraCarteMano.getPanel().getComponents().length == 2) {
+						TurnoController turnoCtrl1 = new TurnoController();
+						turnoCtrl1.checkClickUnoGiocatore();
+						clickUnoController++;
+						//FinestraGioco.panelScegliColore.setVisible(true);
+						
+					}
 					FinestraGioco.btnNewButton_1_1.setEnabled(false);
 					for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 						c.setEnabled(false);
@@ -364,14 +373,14 @@ public class CartaController extends JPanel {
 					}
 					else if(strIcon.contains("CambioGiro")) {
 						if(FinestraGioco.varCambioGiro == true) {
-							System.out.println("entra cambio giro if");
+							//System.out.println("entra cambio giro if");
 							FinestraGioco.varCambioGiro = false;
 							testCambioGiro = 1;
 							TurnoController turnoCtrl = new TurnoController();
 							turnoCtrl.turnoBotDxCambioGiro();
 						}
 						else {
-							System.out.println("entra cambio giro else ");
+							//System.out.println("entra cambio giro else ");
 							FinestraGioco.varCambioGiro = true;
 							test = 1;
 							TurnoController turnoCtrl = new TurnoController();
@@ -494,7 +503,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("dentro click bot sx cartaController");
+				//System.out.println("dentro click bot sx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
@@ -733,7 +742,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("dentro click bot SU cartaController");
+				//System.out.println("dentro click bot SU cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
@@ -946,7 +955,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("dentro click bot dx cartaController");
+				//System.out.println("dentro click bot dx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
@@ -1094,7 +1103,7 @@ public class CartaController extends JPanel {
 					else {
 						if(FinestraGioco.varCambioGiro == true)
 						{
-							System.out.println("dentro carta controller bot dx else");
+							//System.out.println("dentro carta controller bot dx else");
 							FinestraGioco.btnNewButton_1_1.setEnabled(true);
 							for (Component c : FinestraCarteMano.getPanel().getComponents()) {
 									c.setEnabled(true);

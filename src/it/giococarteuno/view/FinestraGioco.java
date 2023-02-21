@@ -52,6 +52,8 @@ public class FinestraGioco {
 	public static JLabel corniveAvatarBotSx;
 	
 	public static JButton clickUnoButton;
+	
+	public static int checkBtnclick = 0;
 
 	/**
 	 * Launch the application.
@@ -78,13 +80,14 @@ public class FinestraGioco {
 		initialize();
 		TurnoController turnoCtrl = new TurnoController();
 		turnoCtrl.checkBorderGiocatore();
+		//turnoCtrl.checkCarteGiocatore();
 	}
 	
 	public static  void addFinCarteMano() {
 		
 		FinestraCarteMano p = new FinestraCarteMano();
 		frame.getContentPane().add(p.initialize());
-		System.out.println("addPanelCartaManoAlFrame");
+		//System.out.println("addPanelCartaManoAlFrame");
 	}
 
 	/**
@@ -117,7 +120,7 @@ public class FinestraGioco {
 //		ImageIcon image1 = new ImageIcon("assets\\3giallo.png");
 //		ImageIcon image2 = new ImageIcon("assets\\1rosso.png");
 		varCambioGiro = true;
-		System.out.println(varCambioGiro);
+		//System.out.println(varCambioGiro);
 //		varCambioGiro = false;
 //		System.out.println(varCambioGiro);
 		CartaController.generaMazzo();
@@ -139,7 +142,7 @@ public class FinestraGioco {
 		//System.out.println("dentroFinestraGioco");
 		//CartaController ctrl = new CartaController();
 		//CartaController.generaMazzo();
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < 2; i++) {
 			CartaController.pescaCarta();
 		}
 		
@@ -197,7 +200,7 @@ public class FinestraGioco {
 		btnNewButton_1_1.setBounds(692, 322, 74, 111);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
-		System.out.println(MainFinestraIniziale.getStringaNickname());
+		//System.out.println(MainFinestraIniziale.getStringaNickname());
 		
 		btnNewButton = new JButton("Esci");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -458,15 +461,21 @@ public class FinestraGioco {
 		corniveAvatarBotDx.setBounds(1126, 344, 50, 50);
 		frame.getContentPane().add(corniveAvatarBotDx);
 		
+		//click uno
 		clickUnoButton = new JButton("UNOOO");
 		clickUnoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				if(varCambioGiro == true) {
+					checkBtnclick++;
 					CartaController.test = 1;
 					TurnoController turnoCtrl = new TurnoController();
 					turnoCtrl.turnoBotSx();
+					
 				}
 				else {
+					checkBtnclick++;
 					CartaController.testCambioGiro = 1;
 					TurnoController turnoCtrl = new TurnoController();
 					turnoCtrl.turnoBotDxCambioGiro();
