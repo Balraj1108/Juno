@@ -502,8 +502,9 @@ public class CartaController extends JPanel {
 		btnNewButton.setActionCommand(carta.getValore() +"_"+ carta.getColore());
 		
 		btnNewButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("dentro click bot sx cartaController");
+				System.out.println("dentro click bot sx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				String[] carta1 = cartaScar.getIcon().toString().split("[_.\\\\]");
 				String[] carta2 = btnNewButton.getActionCommand().split("[_.\\\\]");
@@ -520,7 +521,7 @@ public class CartaController extends JPanel {
 				
 				
 				else if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
-						|| carta2[0].equals("PiuQuattro") || carta2[0].equals("CambioGiro") )  {
+						|| carta2[0].equals("PiuQuattro"))  {
 					//System.out.println("dentro bot");
 					contTur = 1;
 					//String ciao = "c";
@@ -742,7 +743,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("dentro click bot SU cartaController");
+				System.out.println("dentro click bot SU cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
@@ -759,7 +760,7 @@ public class CartaController extends JPanel {
 				
 				
 				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
-						|| carta2[0].equals("PiuQuattro") || carta2[0].equals("CambioGiro"))  {
+						|| carta2[0].equals("PiuQuattro"))  {
 					//contTurnSu = 1;
 					Boolean camCol = false;
 					String strIcon = btnNewButton.getActionCommand() + "";
@@ -955,7 +956,7 @@ public class CartaController extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("dentro click bot dx cartaController");
+				System.out.println("dentro click bot dx cartaController");
 				JButton cartaScar = FinestraGioco.getCartaScartata();
 				
 				if(cartaScar.getIcon().toString().equals("")) {
@@ -971,7 +972,7 @@ public class CartaController extends JPanel {
 				
 				
 				if(carta1[1].equals(carta2[0]) || carta1[2].equals(carta2[1]) || carta2[0].equals("CambioColore")
-						|| carta2[0].equals("PiuQuattro") || carta2[0].equals("CambioGiro"))  {
+						|| carta2[0].equals("PiuQuattro"))  {
 					
 //					cartaScar.setIcon(new ImageIcon("assets\\"+ btnNewButton.getActionCommand() +".png"));
 //					cartaScar.setBorder(BorderFactory.createLineBorder(CartaController.coloreCornice(carta2[1]),4));
@@ -994,7 +995,7 @@ public class CartaController extends JPanel {
 						else {
 							CartaController.addCartaBotSu();
 							CartaController.addCartaBotSu();
-							contTurCambioGiro = 1;
+							contTurnSuCambioGiro = 1;
 							TurnoController turnoCtrl = new TurnoController();
 							turnoCtrl.turnoBotSxCambioGiro();
 							

@@ -3,8 +3,10 @@ package it.giococarteuno.view.gioco;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 
 final class createProfilePage extends JFrame implements ActionListener {
@@ -17,7 +19,7 @@ final class createProfilePage extends JFrame implements ActionListener {
     
     JButton uploadPic = new JButton("Upload Profile Picture");
 
-    createProfilePage() {
+    createProfilePage() throws IOException {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //setting container
         setLayoutManager();
@@ -33,7 +35,7 @@ final class createProfilePage extends JFrame implements ActionListener {
         container.setLayout(null);
     }
 
-    public void setLocationAndSize() {
+    public void setLocationAndSize() throws IOException {
         //Setting location and Size of each components using setBounds() method.
        
 
@@ -43,6 +45,14 @@ final class createProfilePage extends JFrame implements ActionListener {
         
         picLabel.setBounds(350, 50, 150, 150);
         picLabel.setBorder(BorderFactory.createLineBorder((Color.blue),4));
+        
+        BufferedImage picture = ImageIO.read(new File("profileImage\\userImg.png"));
+        
+      //  BufferedImage picture1 = ImageIO.read(file);
+        Image dimg = picture.getScaledInstance(picLabel.getWidth(), picLabel.getHeight(),
+                Image.SCALE_SMOOTH);
+        picLabel.setIcon(new ImageIcon(dimg));
+        
     }
 
     public void addComponents() {
@@ -75,6 +85,10 @@ final class createProfilePage extends JFrame implements ActionListener {
 
                     picLabel.setIcon(new ImageIcon(dimg));
                     add(picLabel);
+                    
+                    
+                    ImageIO.write(picture, "png", new File("C:\\corso_java\\ws_eclipse\\giococarteuno\\profileImage\\" + "userImg.png"));
+                    
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                     JOptionPane.showMessageDialog(null, "ERROR");
@@ -85,7 +99,12 @@ final class createProfilePage extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         Runnable r = () -> {
-            new createProfilePage().setVisible(true);
+            try {
+				new createProfilePage().setVisible(true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         };
         SwingUtilities.invokeLater(r);
     }
