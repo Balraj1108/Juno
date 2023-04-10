@@ -6,7 +6,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,14 +43,14 @@ public class FinestraProfilo extends JPanel {
 		panel.setLayout(new MigLayout("fillx", "[][][]", "[][][][][][][][][][][][][][][][][]"));
 		panel.setOpaque(false);
 		
-		JLabel lblNewLabel = new JLabel("Nickname: " + MainFinestraIniziale.getStringaNickname().getNickname());
+		JLabel lblNewLabel = new JLabel("Nickname: " + JUno.getStringaNickname().getNickname());
 		panel.add(lblNewLabel, "cell 0 1,alignx center");
 		
 		JButton btnNewButton_1 = new JButton("Modifica Nickname");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFinestraIniziale.addModificaProfilo();
+				JUno.addModificaProfilo();
 				panel.setVisible(false);
 				
 				
@@ -58,16 +58,16 @@ public class FinestraProfilo extends JPanel {
 		});
 		panel.add(btnNewButton_1, "cell 1 1");
 		
-		JLabel lblNewLabel_1 = new JLabel("Livello: " + MainFinestraIniziale.getStringaNickname().getLivello());
+		JLabel lblNewLabel_1 = new JLabel("Livello: " + JUno.getStringaNickname().getLivello());
 		panel.add(lblNewLabel_1, "cell 0 2,alignx center");
 		
-		JLabel lblNewLabel_2 = new JLabel("Partite Vinte: " + MainFinestraIniziale.getStringaNickname().getPartiteVinte());
+		JLabel lblNewLabel_2 = new JLabel("Partite Vinte: " + JUno.getStringaNickname().getPartiteVinte());
 		panel.add(lblNewLabel_2, "cell 0 3,alignx center");
 		
-		JLabel lblNewLabel_3 = new JLabel("Partite Perse: " + MainFinestraIniziale.getStringaNickname().getPartitePerse());
+		JLabel lblNewLabel_3 = new JLabel("Partite Perse: " + JUno.getStringaNickname().getPartitePerse());
 		panel.add(lblNewLabel_3, "cell 0 4,alignx center");
 		
-		JLabel lblNewLabel_4 = new JLabel("Partite Giocate: " + MainFinestraIniziale.getStringaNickname().getPartiteGiocate());
+		JLabel lblNewLabel_4 = new JLabel("Partite Giocate: " + JUno.getStringaNickname().getPartiteGiocate());
 		panel.add(lblNewLabel_4, "cell 0 5,alignx center");
 		
 		JButton btnNewButton = new JButton("Indietro");
@@ -79,7 +79,7 @@ public class FinestraProfilo extends JPanel {
 				
 				
 				panel.setVisible(false);
-				MainFinestraIniziale.addBenvenuto();
+				JUno.addBenvenuto();
 			}
 		});
 		panel.add(btnNewButton, "cell 1 6");

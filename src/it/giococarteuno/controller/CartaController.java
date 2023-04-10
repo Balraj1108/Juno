@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import it.giococarteuno.dao.UtenteDAO;
 import it.giococarteuno.model.Carta;
 import it.giococarteuno.model.Colore;
@@ -70,7 +70,7 @@ public class CartaController extends JPanel {
 
 	public void iniziaMano() {
 		for (int i = 0; i < 7; i++) {
-			MainFinestraIniziale.getStringaNickname().getCarteMano().add(generaCarta());
+			JUno.getStringaNickname().getCarteMano().add(generaCarta());
 		}
 	}
 

@@ -3,7 +3,7 @@ package it.giococarteuno.view;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import it.giococarteuno.controller.CartaController;
 
 import javax.swing.JLabel;
@@ -71,7 +71,7 @@ public class FinestraBenvenuto extends JPanel {
 			}
 		});
 		
-		JLabel lblNewLabel = new JLabel("Bentornato: " + MainFinestraIniziale.getStringaNickname().getNickname());
+		JLabel lblNewLabel = new JLabel("Bentornato: " + JUno.getStringaNickname().getNickname());
 		panel.add(lblNewLabel, "cell 2 0");
 		
 		JLabel lblNewLabel_1 = new JLabel();
@@ -100,7 +100,7 @@ public class FinestraBenvenuto extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFinestraIniziale.addProfilo();
+				JUno.addProfilo();
 //				pro.setEnabled(true);
 //				System.out.println("prima false profilo");
 				panel.setVisible(false);
@@ -116,7 +116,7 @@ public class FinestraBenvenuto extends JPanel {
 				
 				//MainFinestraIniziale.showMain();
 				
-				MainFinestraIniziale.getPanel().setVisible(true);
+				JUno.getPanel().setVisible(true);
 				panel.setVisible(false);
 			}
 		});

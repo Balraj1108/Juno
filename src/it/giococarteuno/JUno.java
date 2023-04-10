@@ -30,7 +30,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-public class MainFinestraIniziale extends JFrame {
+public class JUno extends JFrame {
 
 	private static JFrame frame;
 	private JTextField textField;
@@ -45,7 +45,7 @@ public class MainFinestraIniziale extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFinestraIniziale window = new MainFinestraIniziale();
+					JUno window = new JUno();
 					getFrame().setVisible(true);
 					
 				} catch (Exception e) {
@@ -58,7 +58,7 @@ public class MainFinestraIniziale extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public MainFinestraIniziale() {
+	public JUno() {
 		initialize();
 	}
 	
@@ -183,7 +183,7 @@ public class MainFinestraIniziale extends JFrame {
 	}
 
 	public static void setStringaNickname(Utente stringaNickname) {
-		MainFinestraIniziale.stringaNickname = stringaNickname;
+		JUno.stringaNickname = stringaNickname;
 	}
 	
 	public static JFrame getFrame() {
@@ -191,7 +191,7 @@ public class MainFinestraIniziale extends JFrame {
 	}
 
 	public static void setFrame(JFrame frame) {
-		MainFinestraIniziale.frame = frame;
+		JUno.frame = frame;
 	}
 
 	public static JPanel getPanel() {
@@ -199,7 +199,7 @@ public class MainFinestraIniziale extends JFrame {
 	}
 
 	public void setPanel(JPanel panel) {
-		MainFinestraIniziale.panel = panel;
+		JUno.panel = panel;
 	}
 	
 	

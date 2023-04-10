@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import it.giococarteuno.dao.UtenteDAO;
 
 import javax.swing.JButton;
@@ -43,7 +43,7 @@ public class FinestraModificaProfilo extends JPanel {
 		JLabel lblNewLabel = new JLabel("Nickname:");
 		panel.add(lblNewLabel, "flowx,cell 1 1,alignx center");
 		
-		textField = new JTextField(MainFinestraIniziale.getStringaNickname().getNickname());
+		textField = new JTextField(JUno.getStringaNickname().getNickname());
 		panel.add(textField, "cell 1 1,alignx center");
 		textField.setColumns(10);
 		
@@ -65,15 +65,15 @@ public class FinestraModificaProfilo extends JPanel {
 				else
 				{
 					utenteDAO.update(nicknameText, 
-					MainFinestraIniziale.getStringaNickname().getId());
+					JUno.getStringaNickname().getId());
 					
-					MainFinestraIniziale.getStringaNickname().setNickname(nicknameText);
+					JUno.getStringaNickname().setNickname(nicknameText);
 					
 					FinestraGioco.getUtenteLog().setNickname(nicknameText);
 					
 					
 					panel.setVisible(false);
-					MainFinestraIniziale.addProfilo();
+					JUno.addProfilo();
 					showSuccess();
 				}
 			}

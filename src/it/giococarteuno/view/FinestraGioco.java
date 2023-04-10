@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import it.giococarteuno.controller.CartaController;
 import it.giococarteuno.controller.TurnoController;
 import it.giococarteuno.dao.UtenteDAO;
@@ -213,11 +213,11 @@ public class FinestraGioco {
 				win.dispose();
 				
 
-				MainFinestraIniziale.getFrame().setVisible(true);
+				JUno.getFrame().setVisible(true);
 				FinestraBenvenuto.getPanel().setVisible(true);
 				UtenteDAO utenteDAO = new UtenteDAO();
 				
-				MainFinestraIniziale.setStringaNickname(utenteDAO.findByNickname(utenteLog.getNickname()));
+				JUno.setStringaNickname(utenteDAO.findByNickname(utenteLog.getNickname()));
 				utenteLog = utenteDAO.findByNickname(utenteLog.getNickname());
 				
 				
@@ -485,7 +485,7 @@ public class FinestraGioco {
 		frame.getContentPane().add(corniceGiro);
 		
 		
-		MainFinestraIniziale.setStringaNickname(utenteLog);
+		JUno.setStringaNickname(utenteLog);
 		
 	}
 

@@ -9,7 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.JUno;
 import it.giococarteuno.dao.UtenteDAO;
 
 import javax.swing.JButton;
@@ -73,7 +73,7 @@ public class FinestraRegistrazione extends JPanel {
 				else {
 					utenteDAO.insert(nicknameText);
 					
-					MainFinestraIniziale.showMain();
+					JUno.showMain();
 					panel.setVisible(false);
 					
 					showSuccess();
@@ -87,7 +87,7 @@ public class FinestraRegistrazione extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MainFinestraIniziale.showMain();
+				JUno.showMain();
 				panel.setVisible(false);
 				
 			}
