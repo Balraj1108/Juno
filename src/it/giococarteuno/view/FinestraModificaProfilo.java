@@ -38,6 +38,7 @@ public class FinestraModificaProfilo extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 436, 263);
 		panel.setLayout(new MigLayout("fillx", "[][grow][][]", "[][][]"));
+		panel.setOpaque(false);
 		
 		JLabel lblNewLabel = new JLabel("Nickname:");
 		panel.add(lblNewLabel, "flowx,cell 1 1,alignx center");
@@ -71,9 +72,6 @@ public class FinestraModificaProfilo extends JPanel {
 					FinestraGioco.getUtenteLog().setNickname(nicknameText);
 					
 					
-//					Profilo fProfilo = new Profilo();
-//					fProfilo.getFrame().setVisible(true);
-//					frame.dispose();
 					panel.setVisible(false);
 					MainFinestraIniziale.addProfilo();
 					showSuccess();

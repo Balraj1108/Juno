@@ -4,14 +4,23 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import it.giococarteuno.MainFinestraIniziale;
+import it.giococarteuno.controller.CartaController;
 
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import net.miginfocom.swing.MigLayout;
@@ -39,10 +48,16 @@ public class FinestraBenvenuto extends JPanel {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 436, 263);
 		panel.setLayout(new MigLayout("fillx", "[][][][][]", "[50][][][][]"));
+		panel.setOpaque(false);
 		
 		JButton btnNewButton = new JButton("Gioca");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				CartaController.pos = 0;
+				CartaController.pos1 = 0;
+				CartaController.pos2 = 0;
+				CartaController.pos3 = 0;
 				
 				//per chiudere la finestra corrente
 				JComponent comp = (JComponent) e.getSource();
@@ -58,6 +73,24 @@ public class FinestraBenvenuto extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Bentornato: " + MainFinestraIniziale.getStringaNickname().getNickname());
 		panel.add(lblNewLabel, "cell 2 0");
+		
+		JLabel lblNewLabel_1 = new JLabel();
+		
+		lblNewLabel_1.setSize(100 , 100);
+		lblNewLabel_1.setBorder(BorderFactory.createLineBorder((Color.black),2));
+		
+		BufferedImage picture;
+		try {
+			picture = ImageIO.read(new File("profileImage\\userImg.png"));
+			Image dimg = picture.getScaledInstance(lblNewLabel_1.getWidth(), lblNewLabel_1.getHeight(),
+	                Image.SCALE_SMOOTH);
+			lblNewLabel_1.setIcon(new ImageIcon(dimg));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		panel.add(lblNewLabel_1, "cell 0 1");
 		
 		panel.add(btnNewButton,"cell 2 1,growx");
 		

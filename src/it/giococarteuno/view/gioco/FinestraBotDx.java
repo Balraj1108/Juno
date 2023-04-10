@@ -19,6 +19,7 @@ public class FinestraBotDx extends JPanel {
 		setLayout(null);
 		panel = new JPanel();
 		panel.setBounds(1194, 44, 146, 592);
+		panel.setOpaque(false);
 		add(panel);
 		
 		return panel;

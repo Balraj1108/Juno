@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -20,10 +22,13 @@ import it.giococarteuno.view.FinestraGioco;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 public class MainFinestraIniziale extends JFrame {
 
@@ -54,7 +59,6 @@ public class MainFinestraIniziale extends JFrame {
 	 * Create the application.
 	 */
 	public MainFinestraIniziale() {
-		//System.out.println("ciao");
 		initialize();
 	}
 	
@@ -106,18 +110,22 @@ public class MainFinestraIniziale extends JFrame {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		//frame.getContentPane().setLayout(new MigLayout("", "[69px][96px][][]", "[19px][21px][][][]"));
+		
+		try {
+			frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("backgroundImage\\backgroundLegnoGrigio.jpg")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		
 		panel.setBounds(0, 0, 436, 263);
 		panel.setLayout(new MigLayout("fillx", "[48px][96px][][57px][75px]", "[21px][][][][]"));
+		panel.setOpaque(false);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("Nickname:");
-		//frame.getContentPane().add(lblNewLabel, "cell 1 2,alignx center,aligny center");
 		panel.add(lblNewLabel, "cell 1 2,alignx center,aligny center");
 		
 		textField = new JTextField();
-		//frame.getContentPane().add(textField, "cell 2 2,alignx left,aligny top");
 		textField.setColumns(10);
 		panel.add(textField, "cell 2 2,growx,aligny top");
 		
@@ -129,8 +137,6 @@ public class MainFinestraIniziale extends JFrame {
 				UtenteDAO utenteDAO = new UtenteDAO();
 				String nicknameText = textField.getText();
 				textField.setText("");
-				//.out.println(nicknameText + " testo che inserisco io");
-				//System.out.println(utenteDAO.findByNickname(nicknameText));
 				setStringaNickname(utenteDAO.findByNickname(nicknameText));
 				
 				if(stringaNickname == null) {
@@ -141,22 +147,15 @@ public class MainFinestraIniziale extends JFrame {
 				
 				FinestraGioco.setUtenteLog(stringaNickname);
 				
-				//System.out.println(stringaNickname + "variabile");
-				
-//				lblNewLabel.setVisible(false);
-//				btnNewButton.setVisible(false);
-//				textField.setVisible(false);
 				
 				
 				addBenvenuto();
 				panel.setVisible(false);
 				
-				//iniziaBenvenuto();
-				
 				
 			}
 		});
-		//frame.getContentPane().add(btnNewButton, "cell 1 3,growx,aligny top");
+		
 		panel.add(btnNewButton, "cell 2 3,growx,aligny top");
 		
 		JButton btnNewButton_1 = new JButton("Registrati");
@@ -171,45 +170,13 @@ public class MainFinestraIniziale extends JFrame {
 				
 			}
 		});
-		//frame.getContentPane().add(btnNewButton_1, "cell 2 4,growx");
+		
 		panel.add(btnNewButton_1, "cell 2 4,growx,aligny top");
 		
-		
-//		frame.getContentPane().add(benvenuto);
-//		benvenuto.setVisible(true);
-		
-
 		
 		
 	}
 	
-//	public void provaBen() {
-//		JPanel panel = new JPanel();
-//		panel.setBounds(0, 0, 436, 263);
-//		JButton btnNewButton = new JButton("Gioca");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				//per chiudere la finestra corrente
-//				JComponent comp = (JComponent) e.getSource();
-//				Window win = SwingUtilities.getWindowAncestor(comp);
-//				win.dispose();
-//				
-//				FinestraGioco fGioco = new FinestraGioco();
-//				fGioco.getFrame().setVisible(true);
-//				
-//				
-//			}
-//		});
-//		btnNewButton.setBounds(166, 94, 89, 23);
-//		frame.getContentPane().add(btnNewButton);
-//	}
-	
-//	public void iniziaBenvenuto() {
-//		Benvenuto benvenuto = new Benvenuto();
-//		frame.getContentPane().add(benvenuto);
-//		benvenuto.setVisible(true);
-//	}
 	
 	public static Utente getStringaNickname() {
 		return stringaNickname;

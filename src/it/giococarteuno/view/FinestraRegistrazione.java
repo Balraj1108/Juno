@@ -46,6 +46,7 @@ public class FinestraRegistrazione extends JPanel {
 		panel.setBounds(0, 0, 436, 263);
 		
 		panel.setLayout(new MigLayout("fillx", "[][][][grow][][][][]", "[][][][]"));
+		panel.setOpaque(false);
 		
 		JLabel lblNewLabel = new JLabel("Nickname");
 		panel.add(lblNewLabel, "cell 3 1,alignx center");

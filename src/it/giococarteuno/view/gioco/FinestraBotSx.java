@@ -25,11 +25,9 @@ public class FinestraBotSx extends JPanel {
 	}
 
 	public Component initialize() {
-		//Border blackline = BorderFactory.createLineBorder(Color.black);
-		//setLayout(null);
 		panel = new JPanel();
 		panel.setBounds(10, 44, 146, 594);
-		//panel.setBorder(blackline);
+		panel.setOpaque(false);
         
 		add(panel);
 		
