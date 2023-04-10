@@ -7,6 +7,12 @@ import java.sql.ResultSet;
 import it.giococarteuno.connection.MyConnection;
 import it.giococarteuno.model.Utente;
 
+
+/**
+ * 
+ * classe per mandare le query al db, aggiorna anche le statistiche del giocatore in base alla vittoria o sconfitta
+ *
+ */
 public class UtenteDAO {
 
 	

@@ -22,6 +22,13 @@ import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
+
+/*
+ *Questo controllore mi permette di gestire i turni dei vari  bot e anche il tempo di risposta di ogni bot alla
+ *mossa successiva
+ *il bot puo andare verso dx o sx in base alla variabile che controlla se il turno è in senso orario o antiorario
+ */
+
 public class TurnoController {
 	
 	public static int tempoDelay = 3000;
@@ -427,6 +434,10 @@ public class TurnoController {
 		
 	}
 	
+	/**
+	 * metodo che colora di rosso il bordo del giocatore quando è il suo turno
+	 */
+	
 	public void checkBorderGiocatore() {
 		
 		Timer timer = new Timer(0, new  ActionListener() {
@@ -475,6 +486,9 @@ public class TurnoController {
 		
 	}
 	
+	/**
+	 * controlla se il giocatore ha "detto"(cliccato) uno quando gli rimane solo una carta, altrimenti pesca 2 carte
+	 */
 	public void checkClickUnoGiocatore() {
 		
 		Timer timer = new Timer(5000, new  ActionListener() {

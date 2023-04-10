@@ -25,6 +25,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import net.miginfocom.swing.MigLayout;
 
+
+/**
+ *Finestra di benvenuto che appare dopo il Login che mostra l'immagine di profilo corrente
+ *permette di giocare, vedere il profilo o uscire dall'account
+ *
+ */
 public class FinestraBenvenuto extends JPanel {
 	
 	

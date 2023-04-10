@@ -22,6 +22,12 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+
+/**
+ *Finestra Profilo dell'utente dove può cambiare il suo nickname o l'immagine del profilo 
+ *vi sono inoltre tutte le statistiche che può  consultare
+ *
+ */
 public class FinestraProfilo extends JPanel {
 
 	

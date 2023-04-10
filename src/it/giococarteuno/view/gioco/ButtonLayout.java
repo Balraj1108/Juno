@@ -6,6 +6,11 @@ import java.awt.Dimension;
 import java.awt.LayoutManager2;
 import java.awt.Point;
 
+
+/**
+ * Classe per gestire la sovrapposizione delle carte quando sono in verticale
+ *
+ */
 public class ButtonLayout implements LayoutManager2 {
 
     public enum Alignment {

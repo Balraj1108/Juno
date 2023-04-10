@@ -40,6 +40,15 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
+
+/**
+ *Finestra di gioco, qua l'utente può giocare ad Uno contro 3 bot 
+ *ognuno ha un'immagine di profilo e questa appare con i bordi rossi quando tocca al giocatore o al bot
+ *vi è anche un'immagine che mostra in che senso sta andando il turno
+ *pila degli scarti dove vi è sempra l'ultima carta messa sul tavolo e mazzo da cui pescare
+ *bottone esci per uscire dalla partita corrente
+ *
+ */
 public class FinestraGioco {
 
 	private static JFrame frame;

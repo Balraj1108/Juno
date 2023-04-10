@@ -1,5 +1,11 @@
 package it.giococarteuno.model;
 
+
+/**
+ * 
+ * Classe Carta avente due attributi Colore e Valore
+ *
+ */
 public class Carta {
 	
 	

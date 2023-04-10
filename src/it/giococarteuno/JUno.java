@@ -40,6 +40,8 @@ public class JUno extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * Main FinestraIniziale per far partire il gioco con il login.
+	 * L'utente può scegliere se fare il login o la registrazione.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -129,6 +131,10 @@ public class JUno extends JFrame {
 		textField.setColumns(10);
 		panel.add(textField, "cell 2 2,growx,aligny top");
 		
+		/**
+		 * bottone login
+		 */
+		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,6 +163,10 @@ public class JUno extends JFrame {
 		});
 		
 		panel.add(btnNewButton, "cell 2 3,growx,aligny top");
+		
+		/**
+		 * bottone Registrati
+		 */
 		
 		JButton btnNewButton_1 = new JButton("Registrati");
 		btnNewButton_1.addActionListener(new ActionListener() {

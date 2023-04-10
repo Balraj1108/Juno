@@ -3,6 +3,12 @@ package it.giococarteuno.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
+/**
+ * Mi permette di collegarmi al db mysql sulla porta 3306 con lo schema gestioneutenteuno
+ *
+ */
+
 public class MyConnection {
 
 	private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";

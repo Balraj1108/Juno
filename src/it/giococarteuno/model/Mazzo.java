@@ -2,6 +2,11 @@ package it.giococarteuno.model;
 
 import java.util.ArrayList;
 
+/**
+ *Classe Mazzo formato da 108 carte
+ *
+ */
+
 public class Mazzo {
 
 	private ArrayList<Carta> mazzo = new ArrayList<Carta>(108);

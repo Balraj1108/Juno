@@ -15,6 +15,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+/**
+ *Qua l'utente può modificare il suo nome utente
+ *in caso esiste già un utente col nickname nuovo bisogna sceglierne un'altro
+ *
+ */
 public class FinestraModificaProfilo extends JPanel {
 	private JTextField textField;
 

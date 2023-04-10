@@ -2,6 +2,13 @@ package it.giococarteuno.model;
 
 import java.util.ArrayList;
 
+
+/**
+ * Classe Utente con i principali attributi
+ * Ogni utente è univoco nel db
+ *
+ */
+
 public class Utente {
 	
 	private Long id;
@@ -10,7 +17,6 @@ public class Utente {
 	private Integer partiteVinte;
 	private Integer partitePerse;
 	private Integer livello;
-	private ArrayList<Carta> carteMano = new ArrayList<Carta>();
 	
 	public Utente() {
 		// TODO Auto-generated constructor stub
@@ -39,19 +45,6 @@ public class Utente {
 		this.livello = livello;
 	}
 	
-	
-
-	public Utente(Long id, String nickname, Integer partiteGiocate, Integer partiteVinte, Integer partitePerse,
-			Integer livello, ArrayList<Carta> carteMano) {
-		super();
-		this.id = id;
-		this.nickname = nickname;
-		this.partiteGiocate = partiteGiocate;
-		this.partiteVinte = partiteVinte;
-		this.partitePerse = partitePerse;
-		this.livello = livello;
-		this.carteMano = carteMano;
-	}
 
 	public Long getId() {
 		return id;
@@ -103,13 +96,6 @@ public class Utente {
 	
 	
 
-	public ArrayList<Carta> getCarteMano() {
-		return carteMano;
-	}
-
-	public void setCarteMano(ArrayList<Carta> carteMano) {
-		this.carteMano = carteMano;
-	}
 
 	@Override
 	public String toString() {

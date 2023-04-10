@@ -35,6 +35,13 @@ import it.giococarteuno.view.gioco.FinestraBotSu;
 import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
+/**
+ * è il controller per le carte.
+ * mi permette di generare il mazzo e generare una carta random dal mazzo
+ * ogni carta ha delle caratteristiche in base a dove viene posizionata
+ * in mano, al bot di sx al bot in alto o il bot di dx
+ */
+
 public class CartaController extends JPanel {
 
 	public static int var = 0;
@@ -63,17 +70,11 @@ public class CartaController extends JPanel {
 	public static Carta carta;
 	public static Mazzo mazzo;
 	public static Mazzo mazzoCarteScartate;
+	
 
 	public CartaController() {
 
 	}
-
-	public void iniziaMano() {
-		for (int i = 0; i < 7; i++) {
-			JUno.getStringaNickname().getCarteMano().add(generaCarta());
-		}
-	}
-
 
 	public static Mazzo generaMazzo() {
 
@@ -137,15 +138,6 @@ public class CartaController extends JPanel {
 	private static void showError() {
 		JOptionPane.showMessageDialog(FinestraGioco.getFrame(), "Hai Perso :(", "Perso", JOptionPane.ERROR_MESSAGE);
 
-	}
-
-	public static void blockMano() {
-		for (Component c : FinestraCarteMano.getPanel().getComponents()) {
-			c.setEnabled(false);
-		}
-		FinestraGioco.btnNewButton_1_1.setEnabled(true);
-		FinestraCarteMano.getPanel().repaint();
-		FinestraCarteMano.getPanel().validate();
 	}
 
 	public static Color coloreCornice(String coloreCarta) {

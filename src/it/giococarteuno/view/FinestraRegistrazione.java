@@ -16,6 +16,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+/**
+ * 
+ *Permette la registrazione di un nuovo utente
+ */
 public class FinestraRegistrazione extends JPanel {
 	private JTextField textField;
 	
