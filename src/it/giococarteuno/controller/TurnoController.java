@@ -23,7 +23,7 @@ import it.giococarteuno.view.gioco.FinestraBotSx;
 import it.giococarteuno.view.gioco.FinestraCarteMano;
 
 
-/*
+/**
  *Questo controllore mi permette di gestire i turni dei vari  bot e anche il tempo di risposta di ogni bot alla
  *mossa successiva
  *il bot puo andare verso dx o sx in base alla variabile che controlla se il turno è in senso orario o antiorario

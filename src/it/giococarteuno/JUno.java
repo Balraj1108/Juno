@@ -30,6 +30,12 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+
+/**
+ * Launch the application.
+ * Main FinestraIniziale per far partire il gioco con il login.
+ * L'utente può scegliere se fare il login o la registrazione.
+ */
 public class JUno extends JFrame {
 
 	private static JFrame frame;
@@ -38,11 +44,6 @@ public class JUno extends JFrame {
 	private static JPanel panel = new JPanel();
 	
 
-	/**
-	 * Launch the application.
-	 * Main FinestraIniziale per far partire il gioco con il login.
-	 * L'utente può scegliere se fare il login o la registrazione.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
