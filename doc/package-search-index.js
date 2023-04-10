@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"it.giococarteuno"},{"l":"it.giococarteuno.connection"},{"l":"it.giococarteuno.controller"},{"l":"it.giococarteuno.dao"},{"l":"it.giococarteuno.model"},{"l":"it.giococarteuno.view"},{"l":"it.giococarteuno.view.gioco"}];updateSearchResults();
